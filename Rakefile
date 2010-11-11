@@ -1,12 +1,14 @@
 require 'rubygems'
 require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
 
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "devise-neo4j"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Devise ORM for Neo4j}
+    gem.description = %Q{Neo4j integration in the Devise authentication framework}
     gem.email = "ben.jackson1@gmail.com"
     gem.homepage = "http://github.com/benjackson/devise-neo4j"
     gem.authors = ["Ben Jackson"]
@@ -18,21 +20,32 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:spec) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
+desc 'Default: run tests for all ORM setups.'
+task :default => :pre_commit
+
+desc 'Run Devise tests for all ORM setups.'
+task :pre_commit do
+  Dir[File.join(File.dirname(__FILE__), 'test', 'orm', '*.rb')].each do |file|
+    orm = File.basename(file).split(".").first
+    ENV['DEVISE_PATH'] ||= File.expand_path('../devise')
+    system "rake test DEVISE_ORM=#{orm} DEVISE_PATH=#{ENV['DEVISE_PATH']}"
+  end
 end
 
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
+desc 'Run Devise tests. Specify path to devise with DEVISE_PATH'
+Rake::TestTask.new(:test) do |test|
+  ENV['DEVISE_ORM'] ||= 'neo4j'
+  ENV['DEVISE_PATH'] ||= File.expand_path('../devise')
+  unless File.exist?(ENV['DEVISE_PATH'])
+    puts "Specify the path to devise (e.g. rake DEVISE_PATH=/path/to/devise). Not found at #{ENV['DEVISE_PATH']}"
+    exit
+  end
+  test.libs << 'lib' << 'test'
+  test.libs << "#{ENV['DEVISE_PATH']}/lib"
+  test.libs << "#{ENV['DEVISE_PATH']}/test"
+  test.test_files = FileList["#{ENV['DEVISE_PATH']}/test/**/*_test.rb"] + FileList['test/**/*_test.rb']
+  test.verbose = true
 end
-
-task :spec => :check_dependencies
-
-task :default => :spec
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
