@@ -21,7 +21,10 @@ module RailsApp
     # Add additional load paths for your own custom dirs
     config.root = APP_ROOT
     config.autoload_paths.reject!{ |p| p =~ /\/app\/(\w+)$/ && !%w(controllers helpers views).include?($1) }
-    config.autoload_paths += [ File.expand_path("#{File.dirname(__FILE__)}/../app/#{DEVISE_ORM}") ]
+    config.autoload_paths += [  File.expand_path("#{File.dirname(__FILE__)}/../app/#{DEVISE_ORM}") ]
+
+    # add custom views for this ORM
+    config.paths.app.views = File.expand_path("#{File.dirname(__FILE__)}/../app/#{DEVISE_ORM}/views")
 
     # Configure generators values. Many other options are available, be sure to check the documentation.
     # config.generators do |g|
