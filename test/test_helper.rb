@@ -11,7 +11,7 @@ require "orm/#{DEVISE_ORM}"
 Dir["test/overrides/**/*.rb"].each { |f| require f }
 
 require "neo4j"
-I18n.load_path << "#{DEVISE_PATH}/config/locales/en.yml" << "config/locales/en.yml"
+I18n.load_path << "#{DEVISE_PATH}/config/locales/en.yml"
 
 require 'mocha'
 require 'webrat'
