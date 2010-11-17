@@ -1,6 +1,9 @@
 = devise-neo4j
 
-Description goes here.
+A gem for Neo4j integration with the Devise authentication framework.
+
+Neo4j: https://github.com/andreasronge/neo4j
+Devise: https://github.com/plataformatec/devise
 
 == Note on Patches/Pull Requests
  

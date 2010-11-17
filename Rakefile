@@ -14,6 +14,8 @@ begin
     gem.authors = ["Ben Jackson"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency "neo4j"
+    gem.add_dependency "devise", ">= 1.2.rc"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
