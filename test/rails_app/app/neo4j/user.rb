@@ -1,7 +1,11 @@
+require 'shared_user'
+
 class User < Neo4j::Rails::Model
-  devise :database_authenticatable, :confirmable, :lockable, :recoverable,
-         :registerable, :rememberable, :timeoutable, :token_authenticatable,
-         :trackable, :validatable, :omniauthable
-   
+  include Shim
+  include SharedUser
+
+  index			:username
+  property 	:username
+  
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
 end

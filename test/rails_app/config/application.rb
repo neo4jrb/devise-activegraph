@@ -7,7 +7,6 @@ require "active_resource/railtie"
 require "rails/test_unit/railtie"
 
 Bundler.require :default
-require 'ruby-debug'
 
 begin
   require "#{DEVISE_ORM}/railtie"
@@ -15,6 +14,7 @@ rescue LoadError
 end
 
 require "devise"
+require "tmpdir"
 
 module RailsApp
   class Application < Rails::Application
@@ -22,9 +22,6 @@ module RailsApp
     config.root = APP_ROOT
     config.autoload_paths.reject!{ |p| p =~ /\/app\/(\w+)$/ && !%w(controllers helpers views).include?($1) }
     config.autoload_paths += [  File.expand_path("#{File.dirname(__FILE__)}/../app/#{DEVISE_ORM}") ]
-
-    # add custom views for this ORM
-    config.paths.app.views = File.expand_path("#{File.dirname(__FILE__)}/../app/#{DEVISE_ORM}/views")
 
     # Configure generators values. Many other options are available, be sure to check the documentation.
     # config.generators do |g|
@@ -39,6 +36,7 @@ module RailsApp
     config.action_mailer.default_url_options = { :host => "localhost:3000" }
     
     config.active_support.deprecation = :stderr
-    config.paths.log = File.join(File.dirname(__FILE__), '..', 'log', 'test.log')
+    config.paths.log = File.join(Dir.tmpdir, 'devise-neo4j-tests', 'rails_app', 'log', 'test.log')
+    config.neo4j.storage_path = File.join(Dir.tmpdir, 'devise-neo4j-tests', 'rails_app', 'tmp', 'neo4j', 'test')
   end
 end

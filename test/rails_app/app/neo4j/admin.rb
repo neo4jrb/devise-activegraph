@@ -1,5 +1,9 @@
+require 'shared_admin'
+
 class Admin < Neo4j::Rails::Model
-  devise :database_authenticatable, :encryptable, :registerable,
-         :timeoutable, :recoverable, :rememberable, :lockable,
-         :unlock_strategy => :time
+  include Shim
+  include SharedAdmin
+  
+  index 		:remember_token
+  property 	:remember_token
 end

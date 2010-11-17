@@ -20,10 +20,17 @@ Webrat.configure do |config|
   config.open_error_files = false
 end
 
-#Devise::OmniAuth.test_mode!
+Devise::OmniAuth.test_mode!
 
 # Add support to load paths so we can overwrite broken webrat setup
 $:.unshift "#{DEVISE_PATH}/test/support"
 Dir["#{DEVISE_PATH}/test/support/**/*.rb"].each { |f| require f }
-Dir["test/support/**/*.rb"].each { |f| require f }
 
+# TODO: This is a hack to get one of the tests running.  For some reason it doesn't work
+# as intended: test/devise_test.rb:63
+module Devise
+	module Models
+		module AuthenticatableAgain
+		end
+	end
+end
