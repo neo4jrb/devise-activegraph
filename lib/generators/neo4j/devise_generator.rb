@@ -10,7 +10,7 @@ module Neo4j
       end
 
       def inject_devise_content
-        inject_into_file(model_path, class_name, model_contents + <<CONTENTS) if model_exists?
+        inject_into_file(model_path, class_name, model_contents + <<CONTENT) if model_exists?
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 CONTENT
