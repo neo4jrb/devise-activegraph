@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "rails", "3.0.1"
+gem "rails", "~>3.0.3"
 gem "webrat", "0.7.1"
 gem "mocha", :require => false
 gem "oa-oauth", :require => "omniauth/oauth"
