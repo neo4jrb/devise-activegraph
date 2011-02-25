@@ -29,8 +29,8 @@ Dir["#{DEVISE_PATH}/test/support/**/*.rb"].each { |f| require f }
 # TODO: This is a hack to get one of the tests running.  For some reason it doesn't work
 # as intended: test/devise_test.rb:63
 module Devise
-	module Models
-		module AuthenticatableAgain
-		end
-	end
+  module Models
+    module AuthenticatableAgain
+    end
+  end
 end
