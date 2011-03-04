@@ -14,7 +14,7 @@ begin
     gem.authors = ["Ben Jackson"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-    gem.add_dependency "neo4j"
+    gem.add_dependency "neo4j", ">= 1.0.0.beta.22"
     gem.add_dependency "devise", ">= 1.2.rc"
   end
   Jeweler::GemcutterTasks.new
@@ -30,7 +30,10 @@ task :pre_commit do
   Dir[File.join(File.dirname(__FILE__), 'test', 'orm', '*.rb')].each do |file|
     orm = File.basename(file).split(".").first
     ENV['DEVISE_PATH'] ||= File.expand_path('../devise')
-    system "rake test DEVISE_ORM=#{orm} DEVISE_PATH=#{ENV['DEVISE_PATH']}"
+    ENV['DEVISE_ORM'] ||= orm
+    # system "rake test DEVISE_ORM=#{orm} DEVISE_PATH=#{ENV['DEVISE_PATH']}"
+    Rake::Task["test"].reenable
+    Rake::Task["test"].invoke
   end
 end
 
