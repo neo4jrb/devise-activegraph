@@ -6,6 +6,6 @@ class User < Neo4j::Rails::Model
 
   index      :username
   property   :username
-  
+
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
 end

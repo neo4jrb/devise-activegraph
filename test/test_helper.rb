@@ -8,9 +8,7 @@ puts "\n==> Devise.orm = #{DEVISE_ORM.inspect}"
 require "rails_app/config/environment"
 require "rails/test_help"
 require "orm/#{DEVISE_ORM}"
-Dir["test/overrides/**/*.rb"].each { |f| require f }
 
-require "neo4j"
 I18n.load_path << "#{DEVISE_PATH}/config/locales/en.yml"
 
 require 'mocha'
@@ -20,17 +18,24 @@ Webrat.configure do |config|
   config.open_error_files = false
 end
 
-Devise::OmniAuth.test_mode!
-
-# Add support to load paths so we can overwrite broken webrat setup
+# Devise test support
 $:.unshift "#{DEVISE_PATH}/test/support"
 Dir["#{DEVISE_PATH}/test/support/**/*.rb"].each { |f| require f }
 
+# Devise-neo4j test support
+$:.unshift "#{File.dirname(__FILE__)}/support"
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+# For generators
+require "rails/generators/test_case"
+require "generators/devise/install_generator"
+require "generators/devise/views_generator"
+
 # TODO: This is a hack to get one of the tests running.  For some reason it doesn't work
 # as intended: test/devise_test.rb:63
-module Devise
-  module Models
-    module AuthenticatableAgain
-    end
-  end
-end
+#module Devise
+#  module Models
+#    module AuthenticatableAgain
+#    end
+#  end
+#end
