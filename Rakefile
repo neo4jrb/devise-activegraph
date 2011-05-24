@@ -8,14 +8,16 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "devise-neo4j"
     gem.summary = %Q{Devise ORM for Neo4j}
-    gem.description = %Q{Neo4j integration in the Devise authentication framework}
+    gem.description = %Q{Neo4j integration with the Devise authentication framework}
     gem.email = "ben.jackson1@gmail.com"
     gem.homepage = "http://github.com/benjackson/devise-neo4j"
-    gem.authors = ["Ben Jackson"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.authors = ["Ben Jackson", "Bobby Calderwood"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-    gem.add_dependency "neo4j", ">= 1.0.0.beta.22"
-    gem.add_dependency "devise", ">= 1.2.rc"
+    gem.add_dependency "neo4j", "~> 1.1.0"
+    gem.add_dependency "devise", "1.3.4"
+    gem.add_dependency "rails", "3.0.4"
+    gem.add_dependency "oa-oauth", "~> 0.2.0"
+    gem.add_dependency "oa-openid", "~> 0.2.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
@@ -23,13 +25,16 @@ rescue LoadError
 end
 
 desc 'Default: run tests for all ORM setups.'
-task :default => :pre_commit
+task :default => [ :set_devise_path, :pre_commit ]
+
+task :set_devise_path do
+  ENV['DEVISE_PATH'] = `bundle show devise`.chomp
+end
 
 desc 'Run Devise tests for all ORM setups.'
 task :pre_commit do
   Dir[File.join(File.dirname(__FILE__), 'test', 'orm', '*.rb')].each do |file|
     orm = File.basename(file).split(".").first
-    ENV['DEVISE_PATH'] ||= File.expand_path('../devise')
     ENV['DEVISE_ORM'] ||= orm
     # system "rake test DEVISE_ORM=#{orm} DEVISE_PATH=#{ENV['DEVISE_PATH']}"
     Rake::Task["test"].reenable
@@ -40,7 +45,7 @@ end
 desc 'Run Devise tests. Specify path to devise with DEVISE_PATH'
 Rake::TestTask.new(:test) do |test|
   ENV['DEVISE_ORM'] ||= 'neo4j'
-  ENV['DEVISE_PATH'] ||= File.expand_path('../devise')
+  ENV['DEVISE_PATH'] ||= `bundle show devise`.chomp
   unless File.exist?(ENV['DEVISE_PATH'])
     puts "Specify the path to devise (e.g. rake DEVISE_PATH=/path/to/devise). Not found at #{ENV['DEVISE_PATH']}"
     exit
