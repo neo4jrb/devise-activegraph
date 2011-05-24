@@ -30,12 +30,3 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 require "rails/generators/test_case"
 require "generators/devise/install_generator"
 require "generators/devise/views_generator"
-
-# TODO: This is a hack to get one of the tests running.  For some reason it doesn't work
-# as intended: test/devise_test.rb:63
-#module Devise
-#  module Models
-#    module AuthenticatableAgain
-#    end
-#  end
-#end
