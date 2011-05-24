@@ -15,9 +15,6 @@ begin
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
     gem.add_dependency "neo4j", "~> 1.1.0"
     gem.add_dependency "devise", "1.3.4"
-    gem.add_dependency "rails", "3.0.4"
-    gem.add_dependency "oa-oauth", "~> 0.2.0"
-    gem.add_dependency "oa-openid", "~> 0.2.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
