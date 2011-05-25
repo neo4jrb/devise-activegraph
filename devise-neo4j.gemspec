@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Jackson", "Bobby Calderwood"]
-  s.date = %q{2011-05-24}
+  s.date = %q{2011-05-25}
   s.description = %q{Neo4j integration with the Devise authentication framework}
   s.email = %q{ben.jackson1@gmail.com}
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".rdebugrc",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE",
@@ -30,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/devise/orm/neo4j/hook.rb",
     "lib/devise/orm/neo4j/schema.rb",
     "lib/generators/neo4j/devise_generator.rb",
+    "test/generators/neo4j/devise_generator_test.rb",
     "test/orm/neo4j.rb",
     "test/overrides/models/recoverable_test.rb",
     "test/rails_app/app/neo4j/admin.rb",
