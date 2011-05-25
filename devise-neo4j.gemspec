@@ -51,31 +51,19 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, ["= 3.0.4"])
-      s.add_runtime_dependency(%q<oa-oauth>, ["~> 0.2.0"])
-      s.add_runtime_dependency(%q<oa-openid>, ["~> 0.2.0"])
-      s.add_runtime_dependency(%q<devise>, ["= 1.3.4"])
-      s.add_runtime_dependency(%q<ruby-debug>, [">= 0.10.3"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<ruby-debug>, [">= 0.10.3"])
       s.add_runtime_dependency(%q<neo4j>, ["~> 1.1.0"])
       s.add_runtime_dependency(%q<devise>, ["= 1.3.4"])
     else
-      s.add_dependency(%q<rails>, ["= 3.0.4"])
-      s.add_dependency(%q<oa-oauth>, ["~> 0.2.0"])
-      s.add_dependency(%q<oa-openid>, ["~> 0.2.0"])
-      s.add_dependency(%q<devise>, ["= 1.3.4"])
-      s.add_dependency(%q<ruby-debug>, [">= 0.10.3"])
       s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<ruby-debug>, [">= 0.10.3"])
       s.add_dependency(%q<neo4j>, ["~> 1.1.0"])
       s.add_dependency(%q<devise>, ["= 1.3.4"])
     end
   else
-    s.add_dependency(%q<rails>, ["= 3.0.4"])
-    s.add_dependency(%q<oa-oauth>, ["~> 0.2.0"])
-    s.add_dependency(%q<oa-openid>, ["~> 0.2.0"])
-    s.add_dependency(%q<devise>, ["= 1.3.4"])
-    s.add_dependency(%q<ruby-debug>, [">= 0.10.3"])
     s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<ruby-debug>, [">= 0.10.3"])
     s.add_dependency(%q<neo4j>, ["~> 1.1.0"])
     s.add_dependency(%q<devise>, ["= 1.3.4"])
   end
