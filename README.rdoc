@@ -9,9 +9,9 @@ Devise: https://github.com/plataformatec/devise
 
 === Installation
 
-Add the neo4j and devise-neo4j gems to your Gemfile.  The Neo4j gem should be taken from my github until a compatible neo4j gem is released:
+Add the neo4j and devise-neo4j gems to your Gemfile:
 
-  gem "neo4j", :git => "git://github.com/benjackson/neo4j.git", :branch => "fixes-for-devise-gem"
+  gem "neo4j", "~> 1.1.1"
   gem "devise-neo4j"
 
 Run the bundle install command:
