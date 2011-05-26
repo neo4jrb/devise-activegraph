@@ -13,7 +13,7 @@ begin
     gem.homepage = "http://github.com/benjackson/devise-neo4j"
     gem.authors = ["Ben Jackson", "Bobby Calderwood"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-    gem.add_dependency "neo4j", "~> 1.1.0"
+    gem.add_dependency "neo4j", "~> 1.1.1"
     gem.add_dependency "devise", "1.3.4"
   end
   Jeweler::GemcutterTasks.new

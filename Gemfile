@@ -7,11 +7,7 @@ group :neo4j do
   gem "oa-openid", "~> 0.2.0", :require => "omniauth/openid"
 
   gem "devise", "1.3.4"  
-  
-  #gem "neo4j", "1.1.0"
-  # Some fixes were required to get 1.1.0 totally working with devise-neo4j.  Will look to get them pulled into the next
-  # gem release and will then update this gem
-  gem "neo4j", :git => "git://github.com/benjackson/neo4j.git", :branch => "fixes-for-devise-gem"
+  gem "neo4j", "~> 1.1.1"
 end
 
 group :test do
