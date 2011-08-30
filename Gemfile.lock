@@ -60,7 +60,7 @@ GEM
     multi_json (1.0.3)
     multi_xml (0.2.2)
     multipart-post (1.1.3)
-    neo4j (1.1.4-java)
+    neo4j (1.2.1-java)
       activemodel (>= 3.0.0)
       orm_adapter (>= 0.0.3)
       railties (>= 3.0.0)
@@ -145,7 +145,7 @@ DEPENDENCIES
   devise (~> 1.4.3)
   jeweler
   mocha
-  neo4j (~> 1.1.1)
+  neo4j (~> 1.2)
   oa-oauth (~> 0.2.0)
   oa-openid (~> 0.2.0)
   rails (= 3.1.0.rc8)
