@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Jackson", "Bobby Calderwood"]
-  s.date = %q{2011-08-25}
+  s.date = %q{2011-08-30}
   s.description = %q{Neo4j integration with the Devise authentication framework}
   s.email = %q{ben.jackson1@gmail.com}
   s.extra_rdoc_files = [
@@ -52,17 +52,20 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<jeweler>, [">= 0"])
-      s.add_runtime_dependency(%q<neo4j>, ["~> 1.1"])
-      s.add_runtime_dependency(%q<devise>, ["= 1.3.4"])
+      s.add_development_dependency(%q<ruby-debug>, [">= 0.10.3"])
+      s.add_runtime_dependency(%q<neo4j>, ["~> 1.2"])
+      s.add_runtime_dependency(%q<devise>, ["~> 1.4.3"])
     else
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<neo4j>, ["~> 1.1"])
-      s.add_dependency(%q<devise>, ["= 1.3.4"])
+      s.add_dependency(%q<ruby-debug>, [">= 0.10.3"])
+      s.add_dependency(%q<neo4j>, ["~> 1.2"])
+      s.add_dependency(%q<devise>, ["~> 1.4.3"])
     end
   else
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<neo4j>, ["~> 1.1"])
-    s.add_dependency(%q<devise>, ["= 1.3.4"])
+    s.add_dependency(%q<ruby-debug>, [">= 0.10.3"])
+    s.add_dependency(%q<neo4j>, ["~> 1.2"])
+    s.add_dependency(%q<devise>, ["~> 1.4.3"])
   end
 end
 
