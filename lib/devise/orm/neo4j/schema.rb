@@ -20,7 +20,6 @@ module Devise
           # If the property is required, its presence should be checked anyway
           options.delete(:null)
           
-          Rails.logger.debug "Adding Devise property for #{self}: #{name.inspect}, #{{ :type => map_type(type) }.merge!(options).inspect}"
           property name, { :type => map_type(type) }.merge!(options)
         end
 
