@@ -24,4 +24,5 @@ vendor
 
 ## PROJECT::SPECIFIC
 tmp
+db
 test/rails_app/log
