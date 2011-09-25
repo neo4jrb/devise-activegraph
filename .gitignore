@@ -26,3 +26,6 @@ vendor
 tmp
 db
 test/rails_app/log
+
+## NETBEANS
+nbproject

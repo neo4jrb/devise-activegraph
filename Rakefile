@@ -16,4 +16,13 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-task :default => :test
+task :default => [:test, :"neo4j:db:remove"]
+
+namespace :neo4j do
+  namespace :db do
+    desc 'Remove the neo4j db files'
+    task :remove do
+      system "rm -fr #{File.join(File.dirname(__FILE__), "db", "*")}"
+    end
+  end
+end

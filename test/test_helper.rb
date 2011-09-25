@@ -37,9 +37,6 @@ end
 
 # Add translations for devise tests
 I18n.load_path << "#{DEVISE_PATH}/config/locales/en.yml"
-I18n.backend.store_translations :fr, {
-  :neo4j => { :models => { :user => "utilisateur" } }
-}
 
 $:.unshift File.dirname(__FILE__)
 puts "\n==> Devise.orm = #{DEVISE_ORM.inspect}"
