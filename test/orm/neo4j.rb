@@ -6,8 +6,13 @@ Neo4j.start
 
 class ActiveSupport::TestCase
   teardown do
-    Neo4j::Transaction.run do
-      Neo4j._all_nodes.each { |n| n.del unless n == Neo4j.ref_node }
+    Neo4j.started_db.graph.getAllNodes.each do |n| 
+      Neo4j::Transaction.run do
+        unless n.id == 0
+          n.rels.each { |r| r.delete unless r.nil? }
+          n.delete unless n.nil?
+        end
+      end
     end
   end
 end

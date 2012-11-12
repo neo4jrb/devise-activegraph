@@ -1,23 +1,27 @@
-require "rubygems"
-require "bundler/setup"
-
 ENV["RAILS_ENV"] = "test"
-DEVISE_ORM = :neo4j
-DEVISE_PATH = ENV['DEVISE_PATH'] || `bundle show devise`.chomp
+DEVISE_ORM = (ENV["DEVISE_ORM"] || :neo4).to_sym
+DEVISE_PATH = ENV['DEVISE_PATH']
 
-require "neo4j"
-require "orm/neo4j"
-require "omniauth/oauth"
-require "omniauth/openid"
-require "devise"
+$:.unshift File.dirname(__FILE__)
+
+puts "\n==> Devise.orm = #{DEVISE_ORM.inspect}"
 
 require "rails_app/config/environment"
 require "rails/test_help"
+require "orm/#{DEVISE_ORM}"
 
-require 'mocha'
+I18n.load_path << "#{DEVISE_PATH}/test/support/locale/en.yml"
+
+require 'mocha/setup'
 require 'webrat'
+Webrat.configure do |config|
+  config.mode = :rails
+  config.open_error_files = false
+end
 
-# Devise test support
+Mocha::Configuration.allow(:stubbing_method_on_nil)
+
+# Add support to load paths so we can overwrite broken webrat setup
 $:.unshift "#{DEVISE_PATH}/test/support"
 Dir["#{DEVISE_PATH}/test/support/**/*.rb"].each { |f| require f }
 
@@ -29,14 +33,3 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 require "rails/generators/test_case"
 require "generators/devise/install_generator"
 require "generators/devise/views_generator"
-
-Webrat.configure do |config|
-  config.mode = :rails
-  config.open_error_files = false
-end
-
-# Add translations for devise tests
-I18n.load_path << "#{DEVISE_PATH}/config/locales/en.yml"
-
-$:.unshift File.dirname(__FILE__)
-puts "\n==> Devise.orm = #{DEVISE_ORM.inspect}"

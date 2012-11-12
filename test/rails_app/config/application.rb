@@ -6,7 +6,16 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "rails/test_unit/railtie"
 
-require "neo4j/rails/railtie"
+Bundler.require :default, DEVISE_ORM
+
+begin
+  require "#{DEVISE_ORM}/railtie"
+rescue LoadError
+end
+
+require "devise"
+
+
 require "tmpdir"
 
 module RailsApp
@@ -21,13 +30,10 @@ module RailsApp
 
     config.action_mailer.default_url_options = { :host => "localhost:3000" }
     
-    config.active_support.deprecation = :stderr
+    #neo4j defaults
     config.paths["log"] = File.join(Dir.tmpdir, 'devise-neo4j-tests', 'rails_app', 'log', 'test.log')
-    config.neo4j.storage_path = File.join(Dir.tmpdir, 'devise-neo4j-tests', 'rails_app', 'tmp', 'neo4j', 'test')
+    config.neo4j.storage_path = File.join(File.dirname(__FILE__), '..', "..", "..", "db")
 
-    # This was used to break devise in some situations
-    config.to_prepare do
-      Devise::SessionsController.layout "application"
-    end
+   
   end
 end

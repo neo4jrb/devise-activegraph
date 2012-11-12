@@ -1,3 +1,13 @@
+= Important Note
+
+This is a fork of the devise-neo4j project, updated  to work with newer version of Neo4j.rb and Devise.
+
+Most of the devise tests pass. You can see the few that do not in test/overrides . All but one of the failures seem to be very minor issues. The one oddity can be seen in RegistrationTest, which is testing validates_confirmation_of :password. It's unclear if this is a real bug (cannot replicate in a unit test or in an application ). 
+
+Note on development: 
+the devise test suite runs out of permgen quick on jruby. To fix this, I set JRUBY_OPTS to: 
+-X+O -J-Xms1024m -J-Xmx2048m -J-XX:PermSize=256m -J-XX:MaxPermSize=512m
+
 = devise-neo4j
 
 A gem for Neo4j integration with the Devise authentication framework.
@@ -11,7 +21,7 @@ Devise: https://github.com/plataformatec/devise
 
 Add the neo4j and devise-neo4j gems to your Gemfile:
 
-  gem "neo4j", "~> 1.2"
+  gem "neo4j", "~> 2.2.0"
   gem "devise-neo4j"
 
 Run the bundle install command:
@@ -32,6 +42,20 @@ Now the model is setup like a default devise model, meaning you can do things li
 You can see a very simple app that demonstrates Neo4j and devise here:
 
 https://github.com/benjackson/devise-neo4j-example
+
+
+Or build your own using:
+  gem install rails
+  rails new myapp -m http://andreasronge.github.com/neo4j/rails.rb -O
+  cd myapp
+  add to your Gem File : 
+  gem 'devise-neo4j', :git => 'git://github.com/cfitz/devise-neo4j.git', :branch => 'devise2'
+  bundle
+  rails generate devise:install --orm=neo4j
+  bundle exec rails g neo4j:devise User
+  add devise_for :users to config/routes.rb (not sure why generator is not adding this...)
+  rails s
+  go to http://localhost:3000/users/sign_up
 
 == Note on Patches/Pull Requests
  
