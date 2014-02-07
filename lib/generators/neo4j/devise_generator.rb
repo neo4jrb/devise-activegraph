@@ -34,8 +34,8 @@ module Neo4j
    property :username, :type =>   String
    property :facebook_token, :type => String, :index => :exact
 
-   property :created_at, :type => Time
-   property :updated_at, :type => Time
+   property :created_at, :type => DateTime
+   property :updated_at, :type => DateTime
 
    ## Database authenticatable
    property :email, :type => String, :null => false, :default => "", :index => :exact
@@ -44,18 +44,18 @@ module Neo4j
    ## If you include devise modules, uncomment the properties below.
     
    ## Rememberable
-   property :remember_created_at, :type => Time
+   property :remember_created_at, :type => DateTime
    index :remember_token, :type => :exact
 
    
    ## Recoverable
    property :reset_password_token,   :type => NilClass, :index => :exact
-   property :reset_password_sent_at, :type =>   Time
+   property :reset_password_sent_at, :type =>   DateTime
   
    ## Trackable
    property :sign_in_count, :type => Fixnum, :default => 0
-   property :current_sign_in_at, :type => Time
-   property :last_sign_in_at, :type => Time
+   property :current_sign_in_at, :type => DateTime
+   property :last_sign_in_at, :type => DateTime
    property :current_sign_in_ip, :type =>  String
    property :last_sign_in_ip, :type => String
 

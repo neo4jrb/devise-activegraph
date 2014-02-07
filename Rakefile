@@ -2,6 +2,7 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
 require 'rdoc/task'
+require 'neo4j/tasks/neo4j_server'
 
 
 task :default => [:test, :"neo4j:db:remove"]
@@ -9,7 +10,7 @@ task :default => [:test, :"neo4j:db:remove"]
 ENV['DEVISE_ORM'] = 'neo4j'
 devise_checked_out = File.join(File.dirname(__FILE__), '../devise')
 ENV['DEVISE_PATH'] =  File.exist?(devise_checked_out) ? devise_checked_out : `bundle show devise`.chomp
-
+puts ENV['DEVISE_PATH'] 
 desc 'Run tests for devise-neo4j.'
 Rake::TestTask.new(:test) do |test|
   unless File.exist?(ENV['DEVISE_PATH'])

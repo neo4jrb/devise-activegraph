@@ -8,9 +8,9 @@ module Devise
         extend ActiveSupport::Concern
         included do
                     
-          def assign_attributes(new_attributes)
-            attributes = sanitize_for_mass_assignment(new_attributes)
-          end
+         # def assign_attributes(new_attributes)
+         #   attributes = sanitize_for_mass_assignment(new_attributes)
+         # end
         
         end
         

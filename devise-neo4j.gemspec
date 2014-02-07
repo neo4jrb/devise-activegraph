@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency("warden", "~> 1.2.1")
   s.add_dependency("orm_adapter", "~> 0.1")
   s.add_dependency("bcrypt-ruby", "~> 3.0")
-  s.add_dependency("railties", "~> 3.1")
+  s.add_dependency("railties", ">= 3.1")
   s.add_dependency("neo4j", ">= 2.2.0")
-  s.add_dependency("devise", "~> 2.2.0")
+  s.add_dependency("devise", "~> 3.0")
 end

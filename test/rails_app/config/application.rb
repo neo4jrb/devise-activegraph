@@ -3,7 +3,6 @@ require "#{APP_ROOT}/config/boot"
 
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "active_resource/railtie"
 require "rails/test_unit/railtie"
 
 Bundler.require :default, DEVISE_ORM
@@ -30,10 +29,10 @@ module RailsApp
 
     config.action_mailer.default_url_options = { :host => "localhost:3000" }
     
-    #neo4j defaults
-    config.paths["log"] = File.join(Dir.tmpdir, 'devise-neo4j-tests', 'rails_app', 'log', 'test.log')
-    config.neo4j.storage_path = File.join(File.dirname(__FILE__), '..', "..", "..", "db")
-
-   
+    if RUBY_PLATFORM == 'java'
+      #neo4j defaults
+      config.paths["log"] = File.join(Dir.tmpdir, 'devise-neo4j-tests', 'rails_app', 'log', 'test.log')
+      config.neo4j.storage_path = File.join(File.dirname(__FILE__), '..', "..", "..", "db")
+    end
   end
 end

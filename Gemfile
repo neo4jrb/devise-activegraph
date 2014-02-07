@@ -2,12 +2,12 @@ source "http://rubygems.org"
 
 gemspec
 
-gem "rails"
+gem "rails", "~> 4.0"
 gem "omniauth"
 gem "omniauth-oauth2"
 gem "rdoc"
-gem 'neo4j'
-gem "devise", ">= 2.2.0"
+gem 'neo4j', :git => 'https://github.com/andreasronge/neo4j.git'
+gem "devise", "~> 3.0"
 group :test do
   gem "omniauth-facebook"
   gem "omniauth-openid", "~> 1.0.1"
@@ -29,8 +29,8 @@ platforms :ruby do
   gem "sqlite3"
 
   group :mongoid do
-    gem "mongo", "~> 1.3.0"
-    gem "mongoid", "~> 2.0"
+    gem "mongo"
+    gem "mongoid"
     gem "bson_ext", "~> 1.3.0"
   end
 end

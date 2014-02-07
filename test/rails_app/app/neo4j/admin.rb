@@ -1,8 +1,12 @@
 require 'shared_admin'
 
-class Admin < Neo4j::Rails::Model
-  
-  index :email, :type => :exact # this need to come before any validations
+class Admin
+   include Neo4j::ActiveNode
+   include ActiveModel::Validations
+   extend ::Devise::Models
+   extend ::Devise::Orm::Neo4j::Hook
+
+   index :email
 
    property :created_at, :type => DateTime
    property :updated_at, :type => DateTime
@@ -14,10 +18,10 @@ class Admin < Neo4j::Rails::Model
  
    ## Recoverable
    property :reset_password_token,   :type => String
-   property :reset_password_sent_at, :type =>   Time
+   property :reset_password_sent_at, :type => DateTime
    
    ## Confirmable
-   property :confirmation_token, :type => NilClass, :null => true, :index => :exact
+   property :confirmation_token, :type => String, :null => true, :index => :exact
    property :confirmed_at, :type => DateTime
    property :confirmation_sent_at, :type => DateTime
    property :unconfirmed_email, :type => String
@@ -25,7 +29,7 @@ class Admin < Neo4j::Rails::Model
    ## Lockable
    property :locked_at, :type => DateTime
    
-   property :active, :type => :boolean, :default => false
+   property :active, :type => Boolean, :default => false
    
    def active?
      return self.active
