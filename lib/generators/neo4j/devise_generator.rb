@@ -25,7 +25,7 @@ module Neo4j
   # Neo4j.rb needs to have property definitions before any validations. So, the property block needs to come before 
   # loading your devise modules. 
   #
-  # If you add another devise module (such as :lockable, :confirmable, or :token_authenticatable), but sure to 
+  # If you add another devise module (such as :lockable, :confirmable, or :token_authenticatable), be sure to 
   # uncomment the property definitions for those modules. Otherwise, the unused property definitions can be deleted. 
   #
   # Setup accessible attributes for your model

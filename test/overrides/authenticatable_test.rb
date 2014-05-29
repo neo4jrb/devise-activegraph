@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AuthenticationOthersTest < ActionController::IntegrationTest
+class AuthenticationOthersTest < ActionDispatch::IntegrationTest
   undef :test_sign_in_stub_in_xml_format
   test 'sign in stub in xml format' do
     get new_user_session_path(:format => 'xml')
