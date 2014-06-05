@@ -43,3 +43,6 @@ class User
   property :updated_at, type: DateTime
 
 end
+
+UserAdapter  = User.to_adapter unless User.is_a?(OrmAdapter::Base)
+

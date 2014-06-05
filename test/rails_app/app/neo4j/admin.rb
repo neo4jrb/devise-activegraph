@@ -38,4 +38,5 @@ class Admin
   
 end
 
+AdminAdapter = Admin.to_adapter unless Admin.is_a?(OrmAdapter::Base)
 

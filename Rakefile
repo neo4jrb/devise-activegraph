@@ -10,7 +10,6 @@ task :default => [:test, :"neo4j:db:remove"]
 ENV['DEVISE_ORM'] = 'neo4j'
 devise_checked_out = File.join(File.dirname(__FILE__), '../devise')
 ENV['DEVISE_PATH'] =  File.exist?(devise_checked_out) ? devise_checked_out : `bundle show devise`.chomp
-puts ENV['DEVISE_PATH'] 
 desc 'Run tests for devise-neo4j.'
 Rake::TestTask.new(:test) do |test|
   unless File.exist?(ENV['DEVISE_PATH'])
@@ -21,8 +20,12 @@ Rake::TestTask.new(:test) do |test|
   test.libs << 'test'
   test.libs << "#{ENV['DEVISE_PATH']}/lib"
   test.libs << "#{ENV['DEVISE_PATH']}/test"
-  
-  test.test_files = FileList["#{ENV['DEVISE_PATH']}/test/**/*_test.rb"]  +  FileList['test/**/*_test.rb'] 
+
+  if devise_test_path = ENV['DEVISE_TEST_PATH']
+    test.test_files = FileList["#{ENV['DEVISE_PATH']}/test/#{devise_test_path}"]
+  else
+    test.test_files = FileList["#{ENV['DEVISE_PATH']}/test/**/*_test.rb"]  +  FileList['test/**/*_test.rb'] 
+  end
   test.verbose = true
 end
 
