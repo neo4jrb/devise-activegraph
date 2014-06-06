@@ -11,11 +11,11 @@ module Neo4j
     
 
       def inject_field_types
-        inject_into_file model_path, model_contents , :after => /Neo4j(::Rails)?::Model\n/ if model_exists?
+        inject_into_file model_path, model_contents , :after => /Neo4j::ActiveNode\n/ if model_exists?
       end
 
       def inject_devise_content
-        inject_into_file model_path,  migration_data , :after => /Neo4j(::Rails)?::Model\n/ if model_exists?
+        inject_into_file model_path,  migration_data , :after => /Neo4j::ActiveNode\n/ if model_exists?
       end
       
     
@@ -28,46 +28,50 @@ module Neo4j
   # If you add another devise module (such as :lockable, :confirmable, or :token_authenticatable), be sure to 
   # uncomment the property definitions for those modules. Otherwise, the unused property definitions can be deleted. 
   #
-  # Setup accessible attributes for your model
-   attr_accessible :email, :password, :password_confirmation, :remember_me
-  
+
    property :username, :type =>   String
-   property :facebook_token, :type => String, :index => :exact
+   property :facebook_token, :type => String
+   index :facebook_token
 
    property :created_at, :type => DateTime
    property :updated_at, :type => DateTime
 
    ## Database authenticatable
-   property :email, :type => String, :null => false, :default => "", :index => :exact
-   property :encrypted_password, :type =>  NilClass
+   property :email, :type => String, :null => false, :default => ""
+   index :email
+
+   property :encrypted_password
    
    ## If you include devise modules, uncomment the properties below.
     
    ## Rememberable
    property :remember_created_at, :type => DateTime
-   index :remember_token, :type => :exact
+   index :remember_token
 
    
    ## Recoverable
-   property :reset_password_token,   :type => NilClass, :index => :exact
+   property :reset_password_token
+   index :reset_password_token
    property :reset_password_sent_at, :type =>   DateTime
   
    ## Trackable
-   property :sign_in_count, :type => Fixnum, :default => 0
+   property :sign_in_count, :type => Integer, :default => 0
    property :current_sign_in_at, :type => DateTime
    property :last_sign_in_at, :type => DateTime
    property :current_sign_in_ip, :type =>  String
    property :last_sign_in_ip, :type => String
 
    ## Confirmable
-   # property :confirmation_token, :type => NilClass, :index => :exact
+   # property :confirmation_token
+   # index :confirmation_token
    # property :confirmed_at, :type => DateTime
    # property :confirmation_sent_at, :type => DateTime
 
    ## Lockable
-   #  property :failed_attempts, :type => Fixnum, :default => 0
+   #  property :failed_attempts, :type => Integer, :default => 0
    # property :locked_at, :type => DateTime
-   #  property :unlock_token, :type => String, :index => :exact
+   #  property :unlock_token, :type => String,
+   # index :unlock_token
 
     ## Token authenticatable
     # property :authentication_token, :type => String, :null => true, :index => :exact

@@ -6,8 +6,9 @@ gem "rails", "~> 4.1.1"
 gem "omniauth"
 gem "omniauth-oauth2"
 gem "rdoc"
-gem 'neo4j', :git => 'https://github.com/andreasronge/neo4j.git'
-gem "devise", "~> 3.0"
+gem 'neo4j', "~> 3.0.0.alpha.7"
+gem "devise", git: 'git@github.com:plataformatec/devise.git'
+
 group :test do
   gem "omniauth-facebook"
   gem "omniauth-openid", "~> 1.0.1"
