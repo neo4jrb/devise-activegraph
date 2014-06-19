@@ -1,0 +1,17 @@
+---
+- hosts: all
+  remote_user: vagrant
+  sudo: yes
+  vars:
+    user: vagrant
+    group: vagrant
+    user_home: /home/vagrant
+    venv_path: /vagrant/env
+    project_root: /vagrant
+    neo4j_version: 2.1.2
+
+  roles:
+    - common
+    - java
+    - neo4j
+

@@ -2,10 +2,10 @@
 
 This is a fork of the devise-neo4j project, updated  to work with newer version of Neo4j.rb and Devise.
 
-Most of the devise tests pass. You can see the few that do not in test/overrides . All but one of the failures seem to be very minor issues. The one oddity can be seen in RegistrationTest, which is testing validates_confirmation_of :password. It's unclear if this is a real bug (cannot replicate in a unit test or in an application ). 
+Most of the devise tests pass. You can see the few that do not in test/overrides . All but one of the failures seem to be very minor issues. The one oddity can be seen in RegistrationTest, which is testing validates_confirmation_of :password. It's unclear if this is a real bug (cannot replicate in a unit test or in an application ).
 
-Note on development: 
-the devise test suite runs out of permgen quick on jruby. To fix this, I set JRUBY_OPTS to: 
+Note on development:
+the devise test suite runs out of permgen quick on jruby. To fix this, I set JRUBY_OPTS to:
 -X+O -J-Xms1024m -J-Xmx2048m -J-XX:PermSize=256m -J-XX:MaxPermSize=512m
 
 = devise-neo4j
@@ -27,12 +27,12 @@ Add the neo4j and devise-neo4j gems to your Gemfile:
 Run the bundle install command:
 
   bundle install
-  
+
 Then run the devise install generator and optionally update or create a devise-neo4j model:
 
   rails g devise:install --orm=neo4j
   rails g neo4j:devise MODEL
-  
+
 Now the model is setup like a default devise model, meaning you can do things like adding a before_filter in a controller to restrict access to logged-in users only:
 
   before_filter :authenticate_<your model name>!
@@ -73,10 +73,23 @@ You can see a very simple app that demonstrates Neo4j and devise here:
   rails s
 
   # go to http://localhost:3000/users/sign_up
-==
+
+== Developing
+
+=== For JRuby
+
+JRUby neo4j has an embedded server as part of the gem, so nothing else is needed to get set up and running.
+
+=== For Ruby
+
+There is a Vagrant setup that installs neo4j so that you can easily get started:
+
+    $ vagrant up
+
+The neo4j web interface is forward to port 7474 on your local machine: [http://localhost:7474](http://localhost:7474).
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a

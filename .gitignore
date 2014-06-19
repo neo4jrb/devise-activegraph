@@ -29,3 +29,5 @@ test/rails_app/log
 
 ## NETBEANS
 nbproject
+
+.vagrant

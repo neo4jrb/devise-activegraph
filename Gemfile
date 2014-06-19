@@ -24,6 +24,7 @@ platforms :jruby do
   gem "activerecord-jdbc-adapter"
   gem "activerecord-jdbcsqlite3-adapter"
   gem "jruby-openssl"
+  gem "neo4j-community"
 end
 
 platforms :ruby do
