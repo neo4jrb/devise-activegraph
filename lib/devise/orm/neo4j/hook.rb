@@ -1,5 +1,4 @@
 require 'devise'
-require 'devise/orm/neo4j/compatibility'
 require 'devise/orm/neo4j/nil_class_converter'
 
 module Devise

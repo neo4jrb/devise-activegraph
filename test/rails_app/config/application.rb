@@ -29,10 +29,5 @@ module RailsApp
 
     config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
     
-    if RUBY_PLATFORM == 'java'
-      #neo4j defaults
-      config.paths["log"] = File.join(Dir.tmpdir, 'devise-neo4j-tests', 'rails_app', 'log', 'test.log')
-      config.neo4j.storage_path = File.join(File.dirname(__FILE__), '..', "..", "..", "db")
-    end
   end
 end

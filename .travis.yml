@@ -1,0 +1,5 @@
+script: "bundle exec rake neo4j:install['community-2.1.2'] neo4j:start default --trace"
+language: ruby
+rvm:
+  - 2.1.1
+  - jruby-19mode

@@ -7,7 +7,7 @@ gem "omniauth"
 gem "omniauth-oauth2"
 gem "rdoc"
 gem 'neo4j', "~> 3.0.0.alpha.7"
-gem "devise", git: 'git@github.com:plataformatec/devise.git'
+gem "devise", git: 'https://github.com/plataformatec/devise.git'
 
 group :test do
   gem "omniauth-facebook"
@@ -21,8 +21,6 @@ group :test do
 end
 
 platforms :jruby do
-  gem "activerecord-jdbc-adapter"
-  gem "activerecord-jdbcsqlite3-adapter"
   gem "jruby-openssl"
   gem "neo4j-community"
 end

@@ -3,8 +3,7 @@ require 'shared_user_without_omniauth'
 class UserOnEngine
   include Neo4j::ActiveNode
 #  self.table_name = 'users'
-  include Shim
-  #include SharedUserWithoutOmniauth
+  include SharedUserWithoutOmniauth
 
   ## Database authenticatable
   property :email,              type: String, default: '', null: false, index: :exact

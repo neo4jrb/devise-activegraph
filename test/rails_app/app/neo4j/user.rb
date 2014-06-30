@@ -2,7 +2,6 @@ require 'shared_user'
 
 class User
   include Neo4j::ActiveNode
-  include Shim
   include SharedUser
 
 

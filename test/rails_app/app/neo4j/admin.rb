@@ -2,7 +2,6 @@ require 'shared_admin'
 
 class Admin
   include Neo4j::ActiveNode
-  include Shim
   include SharedAdmin
 
   index :email
