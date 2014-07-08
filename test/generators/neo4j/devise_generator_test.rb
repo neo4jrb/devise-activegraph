@@ -18,8 +18,7 @@ class Neo4j::Generators::ModelGeneratorTest < Rails::Generators::TestCase
 
     assert_file "app/models/player.rb" do |player|
       assert_class "Player", player do |klass|
-        assert_match /Neo4j::Rails::Model/, klass
-        assert_match /attr_accessible :email, :password, :password_confirmation, :remember_me/, klass        
+        assert_match /Neo4j::ActiveNode/, klass
       end
     end
   end

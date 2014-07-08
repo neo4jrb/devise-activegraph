@@ -1,0 +1,45 @@
+---
+- name: Change Soft Open File Limit
+  lineinfile: dest=/etc/security/limits.conf
+              insertbefore="^# End of file$"
+              line="root   soft    nofile  40000"
+              state=present
+
+- name: Change Hard Open File Limit
+  lineinfile: dest=/etc/security/limits.conf
+              insertbefore="^# End of file$"
+              line="root   hard    nofile  40000"
+              state=present
+
+- name: Change Hard Open File Limit
+  lineinfile: dest=/etc/pam.d/su
+              insertafter="^# session    required   pam_limits.so$"
+              line="session    required   pam_limits.so"
+              state=present
+
+- name: Create directory structure
+  file: state=directory
+        path=/opt/neo4j
+
+- name: Download neo4j
+  get_url: url=http://dist.neo4j.org/neo4j-community-{{ neo4j_version }}-unix.tar.gz
+           dest=/opt/neo4j/neo4j-community-{{ neo4j_version }}-unix.tar.gz
+
+- name: Unzip
+  command: tar xvzf neo4j-community-{{ neo4j_version }}-unix.tar.gz chdir=/opt/neo4j
+
+- name: Remove tar file
+  command: rm -rf /opt/neo4j/neo4j-community-{{ neo4j_version }}-unix.tar.gz
+
+- name: Copy Config
+  copy: src=../files/neo4j-server.properties
+        dest=/opt/neo4j/neo4j-community-{{ neo4j_version }}/conf/neo4j-server.properties
+        owner=root
+        group=root
+        mode=0644
+
+- name: Copy Upstart Job
+  template: src=../files/neo4j.conf dest=/etc/init/neo4j.conf owner=root group=root mode=0644
+
+- name: Start
+  command: sudo start neo4j

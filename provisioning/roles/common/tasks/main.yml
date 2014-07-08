@@ -1,0 +1,13 @@
+---
+- name: update apt
+  apt: update_cache=yes cache_valid_time=86400
+
+- name: install base packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - build-essential
+    - git
+    - wget
+    - ntp
+    - sudo
+    - curl

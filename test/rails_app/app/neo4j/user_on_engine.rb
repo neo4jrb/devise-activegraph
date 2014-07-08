@@ -1,18 +1,14 @@
-require 'shared_user'
+require 'shared_user_without_omniauth'
 
-class User
+class UserOnEngine
   include Neo4j::ActiveNode
-  include SharedUser
-
-
-  property :username,       type: String
-  property :facebook_token, type: String, index: :exact
-#  property :id
+#  self.table_name = 'users'
+  include SharedUserWithoutOmniauth
 
   ## Database authenticatable
   property :email,              type: String, default: '', null: false, index: :exact
   property :encrypted_password, type: String, default: ''
-  
+
   ## Recoverable
   property :reset_password_token,   type: String, index: :exact
   property :reset_password_sent_at, type: DateTime
@@ -31,7 +27,7 @@ class User
   property :confirmation_token,   type: String, index: :exact
   property :confirmed_at,         type: DateTime
   property :confirmation_sent_at, type: DateTime
-#  property :unconfirmed_email,   type: String  # Only if using reconfirmable
+  #  property :unconfirmed_email,   type: String  # Only if using reconfirmable
 
   ## Lockable
   property :failed_attempts, type: Integer, default: 0
@@ -41,7 +37,7 @@ class User
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
 
+  def raw_confirmation_token
+    @raw_confirmation_token
+  end
 end
-
-UserAdapter  = User.to_adapter unless User.is_a?(OrmAdapter::Base)
-
