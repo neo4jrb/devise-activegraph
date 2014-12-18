@@ -28,10 +28,10 @@ GIT
 PATH
   remote: .
   specs:
-    devise-neo4j (2.0.0.alpha.1)
+    devise-neo4j (2.0.0)
       bcrypt-ruby (~> 3.0)
       devise (~> 3.0)
-      neo4j (>= 3.0.0)
+      neo4j (>= 3.0.0.alpha.6)
       orm_adapter (~> 0.5.0)
       railties (>= 3.1)
       warden (~> 1.2.1)
