@@ -2,4 +2,3 @@ script: "bundle exec rake neo4j:install['community-2.2.0-M01'] neo4j:start defau
 language: ruby
 rvm:
   - 2.1.5
-  - jruby-19mode

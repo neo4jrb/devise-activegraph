@@ -24,7 +24,6 @@ end
 
 platforms :jruby do
   gem "jruby-openssl"
-  gem "neo4j-community"
 end
 
 platforms :ruby do

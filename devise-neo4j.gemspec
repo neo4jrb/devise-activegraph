@@ -12,8 +12,6 @@ Gem::Specification.new do |s|
   s.summary     = %q{Devise ORM for Neo4j}
   s.description = %q{Neo4j integration with the Devise authentication framework}
 
-  s.rubyforge_project = "devise-neo4j"
-
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- test/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
@@ -25,4 +23,5 @@ Gem::Specification.new do |s|
   s.add_dependency("railties", ">= 3.1")
   s.add_dependency("neo4j", ">= 3.0.0.alpha.6")
   s.add_dependency("devise", "~> 3.0")
+
 end
