@@ -25,4 +25,8 @@ Gem::Specification.new do |s|
   s.add_dependency("railties", ">= 3.1")
   s.add_dependency("neo4j", ">= 3.0.0.alpha.6")
   s.add_dependency("devise", "~> 3.0")
+
+  if RUBY_PLATFORM =~ /java/
+    s.add_dependency("neo4j-community", '~> 2.0')
+  end
 end
