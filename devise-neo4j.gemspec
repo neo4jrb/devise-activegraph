@@ -5,7 +5,7 @@ require "devise-neo4j/version"
 Gem::Specification.new do |s|
   s.name        = "devise-neo4j"
   s.version     = Devise::Neo4j::VERSION
-  
+
   s.authors     = ["Ben Jackson", "Bobby Calderwood"]
   s.email       = ["ben@lissomsolutions.com"]
   s.homepage    = "http://github.com/benjackson/devise-neo4j"
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- test/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
-  
+
   s.add_dependency("warden", "~> 1.2.1")
   s.add_dependency("orm_adapter", "~> 0.5.0")
   s.add_dependency("bcrypt-ruby", "~> 3.0")

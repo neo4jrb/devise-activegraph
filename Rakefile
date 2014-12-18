@@ -2,7 +2,7 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
 require 'rdoc/task'
-require 'neo4j/tasks/neo4j_server'
+load 'neo4j/tasks/neo4j_server.rake'
 
 
 task :default => [:test, :"neo4j:db:remove"]
@@ -16,7 +16,7 @@ Rake::TestTask.new(:test) do |test|
     puts "Specify the path to devise (e.g. rake DEVISE_PATH=/path/to/devise) or include it in your gem bundle. Not found at #{ENV['DEVISE_PATH']}"
     exit
   end
-  test.libs << 'lib' 
+  test.libs << 'lib'
   test.libs << 'test'
   test.libs << "#{ENV['DEVISE_PATH']}/lib"
   test.libs << "#{ENV['DEVISE_PATH']}/test"
@@ -24,7 +24,7 @@ Rake::TestTask.new(:test) do |test|
   if devise_test_path = ENV['DEVISE_TEST_PATH']
     test.test_files = FileList["#{ENV['DEVISE_PATH']}/test/#{devise_test_path}"]
   else
-    test.test_files = FileList["#{ENV['DEVISE_PATH']}/test/**/*_test.rb"]  +  FileList['test/**/*_test.rb'] 
+    test.test_files = FileList["#{ENV['DEVISE_PATH']}/test/**/*_test.rb"]  +  FileList['test/**/*_test.rb']
   end
   test.verbose = true
 end
