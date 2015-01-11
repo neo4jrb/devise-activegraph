@@ -1,8 +1,8 @@
-# Devise-Neo4j [![Build Status](https://secure.travis-ci.org/andreasronge/devise-neo4j.png?branch=master)](http://travis-ci.org/andreasronge/devise-neo4j)
+# Devise-Neo4j [![Build Status](https://secure.travis-ci.org/neo4jrb/devise-neo4j.png?branch=master)](http://travis-ci.org/neo4jrb/devise-neo4j)
 
 A gem for Neo4j integration with the Devise authentication framework.
 
-Neo4j: https://github.com/andreasronge/neo4j Devise:
+Neo4j: https://github.com/neo4jrb/neo4j Devise:
 https://github.com/plataformatec/devise
 
 ## Usage
