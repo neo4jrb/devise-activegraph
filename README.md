@@ -22,6 +22,7 @@ Then run the devise install generator and optionally update or create a
 devise-neo4j model:
 
     rails g devise:install --orm=neo4j
+    # Make sure the model file is created ahead of time!
     rails g neo4j:devise MODEL
 
 Now the model is setup like a default devise model, meaning you can do things
