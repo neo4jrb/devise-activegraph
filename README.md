@@ -36,7 +36,7 @@ users only:
 You can see a very simple app that demonstrates Neo4j and devise here:
 
     gem install rails
-    rails new myapp -m http://andreasronge.github.com/neo4j/neo4j.rb -O
+    rails new myapp -m http://neo4jrb.github.io/neo4j/rails.rb -O
     cd myapp
     add to your Gem File :
     gem 'devise'
