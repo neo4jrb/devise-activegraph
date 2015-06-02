@@ -11,62 +11,66 @@ https://github.com/plataformatec/devise
 
 Add the neo4j and devise-neo4j gems to your Gemfile:
 
-    gem "neo4j", "~> 4.1.0"
+    gem "neo4j", "~> 4.2.1"
     gem "devise-neo4j"
 
 Run the bundle install command:
 
     bundle install
 
-Then run the devise install generator and optionally update or create a
+Then run the Devise install generator and optionally update or create a
 devise-neo4j model:
 
     rails g devise:install --orm=neo4j
     # Make sure the model file is created ahead of time!
     rails g neo4j:devise MODEL
+    
+Add the Devise route to your config/routes.rb:
 
-Now the model is setup like a default devise model, meaning you can do things
-like adding a before_filter in a controller to restrict access to logged-in
+    devise_for :users
+
+Now the model is set up like a default Devise model, meaning you can do things
+like adding a `before_action` in a controller to restrict access to logged-in
 users only:
 
-    before_filter :authenticate_<your model name>!
+    before_action :authenticate_<your model name>!
 
 ## Example App
 
 You can see a very simple app that demonstrates Neo4j and devise here:
 
     gem install rails
-    rails new myapp -m http://neo4jrb.github.io/neo4j/rails.rb -O
+    rails new myapp -m http://neo4jrb.io/neo4j/rails.rb -O
     cd myapp
-    add to your Gem File :
-    gem 'devise'
-    gem 'devise-neo4j', :git => 'git@github.com:cheerfulstoic/devise-neo4j.git'
+    
+    # Add the gem to your Gemfile, then run bundle:
+    gem 'devise-neo4j'
     bundle
+    
     rails generate devise:install --orm=neo4j
 
-    # install the database unless you already have a neo4j database, or use JRuby Embedded Neo4j db
-    rake neo4j:install[community-2.1.2] # check which one is the latest
+    # Install the database unless you already have a Neo4j database, or use JRuby Embedded Neo4j db
+    rake neo4j:install[community-2.2.2] # check which one is the latest
     rake neo4j:start
 
     rails g neo4j:devise User
-    # add to your config/routes.rb:
-      devise_for :users
-      root :to => "secrets#show"
+    
+    # Add to your config/routes.rb:
+    devise_for :users
+    root :to => "secrets#show"
 
-    # generate a controller for the protected content
+    # Generate a controller for the protected content
     rails g controller secrets show
 
-    # in app/controllers/sercrets_controller.rb delete line get 'secrets/show' and add:
-      before_filter :authenticate_user!
+    # In app/controllers/secrets_controller.rb add:
+    before_action :authenticate_user!
 
-    # in app/views/secrets/show.html.erb: add:
-      <p>Shhhh... this page is only visible to logged-in users!</p>
+    # In app/views/secrets/show.html.erb add:
+    <p>Shhhh... this page is only visible to logged-in users!</p>
+    <%= link_to "Log out", destroy_user_session_path, method: :delete  %>
 
-      <%= link_to "Log out", destroy_user_session_path, method: :delete  %>
-
+    # Start the application and visit http://localhost:3000/users/sign_up
     rails s
-
-    # go to http://localhost:3000/users/sign_up
 
 ## Developing
 
