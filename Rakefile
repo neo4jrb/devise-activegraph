@@ -2,7 +2,6 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
 require 'rdoc/task'
-load 'neo4j/tasks/neo4j_server.rake'
 
 
 task :default => [:test, :"neo4j:db:remove"]
