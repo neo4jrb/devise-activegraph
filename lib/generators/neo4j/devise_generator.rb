@@ -46,6 +46,7 @@ module Neo4j
 
      ## Rememberable
      property :remember_created_at, type: DateTime
+     property :remember_token
      index :remember_token
 
 
