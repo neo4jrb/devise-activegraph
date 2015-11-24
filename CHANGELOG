@@ -1,5 +1,0 @@
-== 2.0.0
-* Point gemfile at the neo4jrb repos now that all specs are passing.
-
-== 2.0.0.alpha.1
-* Support for Neo4j.rb 3.0!

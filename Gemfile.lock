@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    devise-neo4j (2.0.0)
+    devise-neo4j (2.0.1)
       bcrypt (>= 3.0)
       devise (>= 3.0)
       neo4j (>= 3.0.0.alpha.6)
@@ -238,3 +238,6 @@ DEPENDENCIES
   ruby-debug (>= 0.10.3)
   sqlite3
   webrat (= 0.7.2)
+
+BUNDLED WITH
+   1.10.6
