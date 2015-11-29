@@ -2,7 +2,6 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
 require 'rdoc/task'
-require 'pry'
 begin
   require 'neo4j/rake_tasks'
 rescue LoadError
