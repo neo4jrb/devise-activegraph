@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This file should follow the standards specified on [http://keepachangelog.com/]
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.2] - 11-29-2015
+
+### Fixed
+
+- Rakefile error in versions < 6.0.0
+
 ## [2.0.1] - 11-24-2015
 
 ### Fixed
