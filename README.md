@@ -23,7 +23,7 @@ devise-neo4j model:
 
     rails g devise:install --orm=neo4j
     # Make sure the model file is created ahead of time!
-    rails g neo4j:devise MODEL
+    rails g neo4j:devise MODEL  # (Where MODEL is something like User)
     
 Add the Devise route to your config/routes.rb:
 
