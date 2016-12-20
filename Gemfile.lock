@@ -227,8 +227,8 @@ DEPENDENCIES
   mocha
   mongo
   mongoid
-  neo4j (~> 5.0.0)
-  neo4j-core (~> 5.0.0)
+  neo4j (>= 5.0.0)
+  neo4j-core (>= 5.0.0)
   omniauth
   omniauth-facebook
   omniauth-oauth2
