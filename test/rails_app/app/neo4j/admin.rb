@@ -4,11 +4,9 @@ class Admin
   include Neo4j::ActiveNode
   include SharedAdmin
 
-  index :email
-
   ## Database authenticatable
-  property :email, type: String, null: true
-  property :encrypted_password, type: String, null: true
+  property :email, type: String
+  property :encrypted_password, type: String
 
   ## Recoverable
   property :reset_password_token,   type: String
@@ -18,7 +16,7 @@ class Admin
   property :remember_created_at, type: DateTime
   
   ## Confirmable
-  property :confirmation_token, type: String, null: true, index: :exact
+  property :confirmation_token, type: String
   property :confirmed_at, type: DateTime
   property :confirmation_sent_at, type: DateTime
   property :unconfirmed_email, type: String

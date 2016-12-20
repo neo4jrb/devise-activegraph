@@ -30,16 +30,27 @@ def create_session
     create_server_session
   else
     create_embedded_session
+  end.tap do |session|
+    puts 'CONSTRAINTS!'
+    session.query('CREATE CONSTRAINT ON (n:User) ASSERT n.uuid IS UNIQUE')
+    session.query('CREATE CONSTRAINT ON (n:Admin) ASSERT n.uuid IS UNIQUE')
+    session.query('CREATE CONSTRAINT ON (n:UserOnMainApp) ASSERT n.uuid IS UNIQUE')
+    session.query('CREATE CONSTRAINT ON (n:UserOnEngine) ASSERT n.uuid IS UNIQUE')
   end
 end
 
 def create_embedded_session
+  # TODO: Replace with new stuff
   session = Neo4j::Session.open(:impermanent_db, EMBEDDED_DB_PATH, auto_commit: true)
   session.start
 end
 
+NEO4J_ADAPTOR = Neo4j::Core::CypherSession::Adaptors::HTTP.new(ENV['NEO4J_URL'] || 'http://localhost:7474')
 def create_server_session
-  Neo4j::Session.open(:server_db, "http://localhost:7474")
+  Neo4j::ActiveBase.current_session = Neo4j::Core::CypherSession.new(NEO4J_ADAPTOR)
+  Neo4j::ActiveBase.on_establish_session do
+    Neo4j::Core::CypherSession.new(NEO4J_ADAPTOR)
+  end
 end
 
 FileUtils.rm_rf(EMBEDDED_DB_PATH)
@@ -47,12 +58,12 @@ FileUtils.rm_rf(EMBEDDED_DB_PATH)
 Dir["#{File.dirname(__FILE__)}/shared_examples/**/*.rb"].each { |f| require f }
 
 def delete_db
-  Neo4j::Session.current._query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
+  Neo4j::ActiveBase.current_session.query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
 end
 
 class ActiveSupport::TestCase
   setup do
-    create_session unless Neo4j::Session.current
+    create_session unless Neo4j::ActiveBase.current_session
     delete_db
   end
 end
