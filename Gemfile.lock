@@ -233,11 +233,11 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-oauth2
   omniauth-openid (~> 1.0.1)
-  rails (~> 4.2.3)
+  rails (>= 4.2.3)
   rdoc
   ruby-debug (>= 0.10.3)
   sqlite3
   webrat (= 0.7.2)
 
 BUNDLED WITH
-   1.10.6
+   1.13.6
