@@ -30,12 +30,6 @@ def create_session
     create_server_session
   else
     create_embedded_session
-  end.tap do |session|
-    puts 'CONSTRAINTS!'
-    session.query('CREATE CONSTRAINT ON (n:User) ASSERT n.uuid IS UNIQUE')
-    session.query('CREATE CONSTRAINT ON (n:Admin) ASSERT n.uuid IS UNIQUE')
-    session.query('CREATE CONSTRAINT ON (n:UserOnMainApp) ASSERT n.uuid IS UNIQUE')
-    session.query('CREATE CONSTRAINT ON (n:UserOnEngine) ASSERT n.uuid IS UNIQUE')
   end
 end
 
@@ -64,6 +58,13 @@ end
 class ActiveSupport::TestCase
   setup do
     create_session unless Neo4j::ActiveBase.current_session
+
+    session = Neo4j::ActiveBase.current_session
+    session.query('CREATE CONSTRAINT ON (n:User) ASSERT n.uuid IS UNIQUE')
+    session.query('CREATE CONSTRAINT ON (n:Admin) ASSERT n.uuid IS UNIQUE')
+    session.query('CREATE CONSTRAINT ON (n:UserOnMainApp) ASSERT n.uuid IS UNIQUE')
+    session.query('CREATE CONSTRAINT ON (n:UserOnEngine) ASSERT n.uuid IS UNIQUE')
+
     delete_db
   end
 end

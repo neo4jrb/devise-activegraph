@@ -11,6 +11,10 @@ gem 'neo4j', '>= 7.0.0'
 gem 'neo4j-core', '>= 6.0.0'
 gem "devise", '3.5.2'
 
+group :development do
+  gem 'pry'
+end
+
 group :test do
   gem "omniauth-facebook"
   gem "omniauth-openid", "~> 1.0.1"

@@ -2,7 +2,6 @@ require 'test_helper'
 require 'digest/sha1'
 
 class DatabaseAuthenticatableTest < ActiveSupport::TestCase
-  
   undef :test_should_run_validations_even_when_current_password_is_invalid_or_blank
   # looks like neo4j wants to run the password validation first
   test 'should run validations even when current password is invalid or blank' do
