@@ -7,8 +7,8 @@ gem "omniauth"
 gem "omniauth-oauth2"
 gem "rdoc"
 
-gem 'neo4j', '>= 5.0.0'
-gem 'neo4j-core', '>= 5.0.0'
+gem 'neo4j', '>= 7.0.0'
+gem 'neo4j-core', '>= 6.0.0'
 gem "devise", '3.5.2'
 
 group :test do
