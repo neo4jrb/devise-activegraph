@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'integration/authenticatable_test'
 
-class AuthenticationOthersTest < ActionDispatch::IntegrationTest
+class AuthenticationOthersTest < Devise::IntegrationTest
   undef :test_sign_in_stub_in_xml_format
   test 'sign in stub in xml format' do
     get new_user_session_path(:format => 'xml')
