@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency("bcrypt", ">= 3.0")
   s.add_dependency("railties", ">= 4.2")
   s.add_dependency("neo4j", ">= 3.0.0")
-  s.add_dependency("devise", ">= 3.0")
+  s.add_dependency("devise", ">= 3.5.2")
 
 end

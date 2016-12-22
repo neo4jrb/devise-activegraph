@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'digest/sha1'
+require 'models/database_authenticatable_test'
 
 class DatabaseAuthenticatableTest < ActiveSupport::TestCase
   undef :test_should_run_validations_even_when_current_password_is_invalid_or_blank
