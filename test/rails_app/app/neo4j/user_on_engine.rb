@@ -2,8 +2,10 @@ require 'shared_user_without_omniauth'
 
 class UserOnEngine
   include Neo4j::ActiveNode
-#  self.table_name = 'users'
   include SharedUserWithoutOmniauth
+
+  property :username,           type: String
+  property :facebook_token,     type: String
 
   ## Database authenticatable
   property :email,              type: String, default: ''

@@ -9,7 +9,7 @@ gem "rdoc"
 
 gem 'neo4j', '>= 7.0.0'
 gem 'neo4j-core', '>= 6.0.0'
-gem "devise", '3.5.2'
+gem "devise"
 
 group :development do
   gem 'pry'

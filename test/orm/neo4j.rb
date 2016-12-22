@@ -64,6 +64,7 @@ class ActiveSupport::TestCase
     session.query('CREATE CONSTRAINT ON (n:Admin) ASSERT n.uuid IS UNIQUE')
     session.query('CREATE CONSTRAINT ON (n:UserOnMainApp) ASSERT n.uuid IS UNIQUE')
     session.query('CREATE CONSTRAINT ON (n:UserOnEngine) ASSERT n.uuid IS UNIQUE')
+    session.query('CREATE CONSTRAINT ON (n:UserWithoutEmail) ASSERT n.uuid IS UNIQUE')
 
     delete_db
   end

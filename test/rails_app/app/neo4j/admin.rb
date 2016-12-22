@@ -14,7 +14,7 @@ class Admin
 
   ## Rememberable
   property :remember_created_at, type: DateTime
-  
+
   ## Confirmable
   property :confirmation_token, type: String
   property :confirmed_at, type: DateTime
@@ -23,16 +23,15 @@ class Admin
 
   ## Lockable
   property :locked_at, type: DateTime
-  
+
   property :active, type: Boolean, default: false
-  
+
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
 
 #  def active?
 #    return self.active
 #  end
-  
 end
 
 AdminAdapter = Admin.to_adapter unless Admin.is_a?(OrmAdapter::Base)

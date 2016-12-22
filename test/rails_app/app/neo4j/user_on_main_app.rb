@@ -4,7 +4,10 @@ class UserOnMainApp
   include Neo4j::ActiveNode
   include SharedUserWithoutOmniauth
 
-## Database authenticatable
+  property :username,           type: String
+  property :facebook_token,     type: String
+
+  ## Database authenticatable
   property :email,              type: String, default: ''
   property :encrypted_password, type: String, default: ''
 

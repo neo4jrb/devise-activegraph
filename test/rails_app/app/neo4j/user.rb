@@ -11,7 +11,7 @@ class User
   ## Database authenticatable
   property :email,              type: String, default: ''
   property :encrypted_password, type: String, default: ''
-  
+
   ## Recoverable
   property :reset_password_token,   type: String
   property :reset_password_sent_at, type: DateTime
