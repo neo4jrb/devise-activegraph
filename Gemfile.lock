@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    devise-neo4j (2.0.2)
+    devise-neo4j (2.1.0)
       bcrypt (>= 3.0)
       devise (>= 3.0)
       neo4j (>= 3.0.0)
@@ -240,4 +240,4 @@ DEPENDENCIES
   webrat (= 0.7.2)
 
 BUNDLED WITH
-   1.10.6
+   1.13.6
