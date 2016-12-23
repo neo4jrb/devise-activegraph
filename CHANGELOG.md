@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This file should follow the standards specified on [http://keepachangelog.com/]
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.0] - 12-23-2016
+
+### Fixed
+
+- Various problems with the model generator with newer version of Neo4j (see #28)
+
 ## [2.0.2] - 11-29-2015
 
 ### Fixed
