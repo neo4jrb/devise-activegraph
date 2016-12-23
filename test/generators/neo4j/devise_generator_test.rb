@@ -12,7 +12,7 @@ class Neo4j::Generators::ModelGeneratorTest < Rails::Generators::TestCase
     assert content =~ /class #{klass}(\(.+\))?(.*?)\nend/m, "Expected to have class #{klass}"
     yield $2.strip if block_given?
   end
-  
+
   test "invoke with model name" do
     content = run_generator %w(Player)
 
@@ -22,5 +22,4 @@ class Neo4j::Generators::ModelGeneratorTest < Rails::Generators::TestCase
       end
     end
   end
-  
 end

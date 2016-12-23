@@ -2,15 +2,17 @@ require 'shared_user_without_omniauth'
 
 class UserOnEngine
   include Neo4j::ActiveNode
-#  self.table_name = 'users'
   include SharedUserWithoutOmniauth
 
+  property :username,           type: String
+  property :facebook_token,     type: String
+
   ## Database authenticatable
-  property :email,              type: String, default: '', null: false, index: :exact
+  property :email,              type: String, default: ''
   property :encrypted_password, type: String, default: ''
 
   ## Recoverable
-  property :reset_password_token,   type: String, index: :exact
+  property :reset_password_token,   type: String
   property :reset_password_sent_at, type: DateTime
 
   ## Rememberable
@@ -24,14 +26,14 @@ class UserOnEngine
   property :last_sign_in_ip,    type: String
 
   ## Confirmable
-  property :confirmation_token,   type: String, index: :exact
+  property :confirmation_token,   type: String
   property :confirmed_at,         type: DateTime
   property :confirmation_sent_at, type: DateTime
   #  property :unconfirmed_email,   type: String  # Only if using reconfirmable
 
   ## Lockable
   property :failed_attempts, type: Integer, default: 0
-  property :unlock_token,    type: String, index: :exact
+  property :unlock_token,    type: String
   property :locked_at,       type: DateTime
 
   property :created_at, type: DateTime

@@ -2,14 +2,18 @@ source "http://rubygems.org"
 
 gemspec
 
-gem "rails", "~> 4.2.3"
+gem "rails", ">= 4.2.3"
 gem "omniauth"
 gem "omniauth-oauth2"
 gem "rdoc"
 
-gem 'neo4j', '~> 5.0.0'
-gem 'neo4j-core', '~> 5.0.0'
-gem "devise", '3.5.2'
+gem 'neo4j', '>= 7.0.0'
+gem 'neo4j-core', '>= 6.0.0'
+gem "devise"
+
+group :development do
+  gem 'pry'
+end
 
 group :test do
   gem "omniauth-facebook"
