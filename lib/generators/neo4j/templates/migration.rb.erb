@@ -1,0 +1,10 @@
+class DeviseCreateUserConstraintsAndIndexes < Neo4j::Migrations::Base
+  def change
+    add_index :<%= label_string %>, :email, force: true
+    add_index :<%= label_string %>, :remember_token, force: true
+    add_index :<%= label_string %>, :reset_password_token, force: true
+    # add_index :<%= label_string %>, :confirmation_token, force: true
+    # add_index :<%= label_string %>, :unlock_token, force: true
+    # add_index :<%= label_string %>, :authentication_token, force: true
+  end
+end

@@ -6,7 +6,10 @@ module Neo4j
       include ::Devise::Generators::OrmHelpers
 
       def copy_devise_migration
-        create_file "db/neo4j/migrate/#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_devise_create_user_constraints_and_indexes.rb", File.read(File.expand_path('./templates/migration.rb', File.dirname(__FILE__)))
+        file_path = "db/neo4j/migrate/#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_devise_create_user_constraints_and_indexes.rb"
+        text = File.read(File.expand_path('./templates/migration.rb.erb', File.dirname(__FILE__)))
+        label_string = name
+        create_file file_path, ERB.new(text).result(binding)
       end
 
       def generate_model
