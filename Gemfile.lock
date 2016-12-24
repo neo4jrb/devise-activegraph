@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    devise-neo4j (2.1.0)
+    devise-neo4j (2.1.1)
       bcrypt (>= 3.0)
       devise (>= 3.5.2)
       neo4j (>= 3.0.0)
