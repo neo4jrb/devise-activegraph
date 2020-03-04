@@ -1,6 +1,6 @@
 require 'generators/devise/orm_helpers'
 
-module Neo4j
+module ActiveGraph
   module Generators
     class DeviseGenerator < ::Rails::Generators::NamedBase
       include ::Devise::Generators::OrmHelpers
