@@ -1,7 +1,7 @@
 require 'shared_user_without_omniauth'
 
 class UserOnEngine
-  include Neo4j::ActiveNode
+  include ActiveGraph::Node
   include SharedUserWithoutOmniauth
 
   property :username,           type: String

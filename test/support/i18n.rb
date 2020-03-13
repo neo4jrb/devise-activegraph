@@ -1,4 +1,4 @@
-class DeviseHelperTest < ActionDispatch::IntegrationTest
+class DeviseHelper2Test < ActionDispatch::IntegrationTest
   setup :neo4j_i18n
 
   private

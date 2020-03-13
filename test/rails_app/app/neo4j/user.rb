@@ -1,7 +1,7 @@
 require 'shared_user'
 
 class User
-  include Neo4j::ActiveNode
+  include ActiveGraph::Node
   include SharedUser
 
   property :username,       type: String
@@ -10,7 +10,7 @@ class User
 
   ## Database authenticatable
   property :email,              type: String, default: ''
-  property :encrypted_password, type: String, default: ''
+  property :encrypted_password, type: String
 
   ## Recoverable
   property :reset_password_token,   type: String

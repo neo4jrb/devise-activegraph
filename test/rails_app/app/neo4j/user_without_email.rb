@@ -1,7 +1,7 @@
 require "shared_user_without_email"
 
 class UserWithoutEmail
-  include Neo4j::ActiveNode
+  include ActiveGraph::Node
   include SharedUserWithoutEmail
 
   property :username, type: String

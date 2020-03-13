@@ -7,8 +7,7 @@ gem "omniauth"
 gem "omniauth-oauth2"
 gem "rdoc"
 
-gem 'neo4j', '>= 7.0.0'
-gem 'neo4j-core', '>= 6.0.0'
+gem 'activegraph'
 gem "devise"
 
 group :development do
@@ -20,7 +19,10 @@ group :test do
   gem "omniauth-openid", "~> 1.0.1"
   gem "webrat", "0.7.2", :require => false
   gem "mocha", :require => false
-
+  gem 'rails-controller-testing'
+  gem 'neo4j-rake_tasks'
+  gem "neo4j-#{RUBY_PLATFORM =~ /java/ ? 'java' : 'ruby'}-driver", '>= 0.3.0'
+  gem 'pry'
   platforms :mri_18 do
     gem "ruby-debug", ">= 0.10.3"
   end

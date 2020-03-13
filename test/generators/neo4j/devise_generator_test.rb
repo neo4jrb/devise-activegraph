@@ -3,8 +3,8 @@ require 'tmpdir'
 require 'rails/generators/test_case'
 require 'generators/neo4j/devise_generator.rb'
 
-class Neo4j::Generators::ModelGeneratorTest < Rails::Generators::TestCase
-  tests Neo4j::Generators::DeviseGenerator
+class ActiveGraph::Generators::ModelGeneratorTest < Rails::Generators::TestCase
+  tests ActiveGraph::Generators::DeviseGenerator
   destination File.join(Dir.tmpdir, File.dirname(__FILE__))
   setup :prepare_destination
 
@@ -18,7 +18,7 @@ class Neo4j::Generators::ModelGeneratorTest < Rails::Generators::TestCase
 
     assert_file "app/models/player.rb" do |player|
       assert_class "Player", player do |klass|
-        assert_match /Neo4j::ActiveNode/, klass
+        assert_match /ActiveGraph::Node/, klass
       end
     end
   end

@@ -1,7 +1,7 @@
 require 'shared_admin'
 
 class Admin
-  include Neo4j::ActiveNode
+  include ActiveGraph::Node
   include SharedAdmin
 
   ## Database authenticatable
