@@ -32,6 +32,11 @@ class Admin
 #  def active?
 #    return self.active
 #  end
+
+  def to_xml(*args)
+    args = args.try(:first) || {}
+    attributes.except('confirmation_token').merge(password: nil).to_xml(args.merge({ root: 'admin' }))
+  end
 end
 
 AdminAdapter = Admin.to_adapter unless Admin.is_a?(OrmAdapter::Base)

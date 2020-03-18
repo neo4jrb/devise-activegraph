@@ -13,7 +13,7 @@ module ActiveGraph
       end
 
       def generate_model
-        invoke 'neo4j:model', [name] unless model_exists? && behavior == :invoke
+        invoke 'active_graph:model', [name] unless model_exists? && behavior == :invoke
       end
 
       def inject_field_types

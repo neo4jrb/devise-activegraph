@@ -40,6 +40,17 @@ class User
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
 
+  def to_xml(*args)
+    args = args.try(:first) || {}
+    except = ['confirmation_token']
+    except << args[:except].to_s if args[:except]
+    except = [args[:force_except].to_s] if args[:force_except]
+    attributes.except(*except).merge(password: nil).to_xml(args.merge({ root: 'user' }))
+  end
+
+  def self.validations_performed
+    false
+  end
 end
 
 UserAdapter  = User.to_adapter unless User.is_a?(OrmAdapter::Base)

@@ -40,12 +40,11 @@ end
 class ActiveSupport::TestCase
   setup do
     create_driver
-    #ActiveGraph::ModelSchema::MODEL_CONSTRAINTS.clear
-    #ActiveGraph::Base.label_object(User.mapped_label_names.first).create_constraint(User.id_property_name, type: :unique)
-    #ActiveGraph::Base.label_object(Admin.mapped_label_names.first).create_constraint(Admin.id_property_name, type: :unique)
-    #ActiveGraph::Base.label_object(UserOnMainApp.mapped_label_names.first).create_constraint(UserOnMainApp.id_property_name, type: :unique)
-    #ActiveGraph::Base.label_object(UserOnEngine.mapped_label_names.first).create_constraint(UserOnEngine.id_property_name, type: :unique)
-    #ActiveGraph::Base.label_object(UserWithoutEmail.mapped_label_names.first).create_constraint(UserWithoutEmail.id_property_name, type: :unique)
+    ActiveGraph::Base.label_object(User.mapped_label_names.first).create_constraint(User.id_property_name, type: :unique)
+    ActiveGraph::Base.label_object(Admin.mapped_label_names.first).create_constraint(Admin.id_property_name, type: :unique)
+    ActiveGraph::Base.label_object(UserOnMainApp.mapped_label_names.first).create_constraint(UserOnMainApp.id_property_name, type: :unique)
+    ActiveGraph::Base.label_object(UserOnEngine.mapped_label_names.first).create_constraint(UserOnEngine.id_property_name, type: :unique)
+    ActiveGraph::Base.label_object(UserWithoutEmail.mapped_label_names.first).create_constraint(UserWithoutEmail.id_property_name, type: :unique)
     ActiveGraph::Base.query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
   end
 end

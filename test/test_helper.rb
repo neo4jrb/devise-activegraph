@@ -39,4 +39,3 @@ require 'test_models'
 require 'overrides/integration_test'
 require 'rails-controller-testing'
 Rails::Controller::Testing.install
-
