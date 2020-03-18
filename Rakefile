@@ -29,7 +29,7 @@ Rake::TestTask.new(:test) do |test|
     test.test_files = FileList["#{ENV['DEVISE_PATH']}/test/**/*_test.rb"]  +  FileList['test/**/*_test.rb']
   end
   #test.test_files = ['test/generators/neo4j/devise_generator_test.rb']
-  test.verbose = true
+  #test.verbose = true
   test.warning = false
 end
 
