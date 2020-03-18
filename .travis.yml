@@ -2,6 +2,8 @@
 dist: xenial
 
 before_script:
+  - mkdir ../devise
+  - git clone https://github.com/heartcombo/devise.git ../devise
   - "travis_retry bin/rake neo4j:install[$NEO4J_VERSION] --trace"
   - "bin/rake neo4j:config[development,7474] --trace"
   - "if [ -f ./db/neo4j/development/conf/neo4j-wrapper.conf ]; then WRAPPER=-wrapper; fi"
@@ -12,7 +14,6 @@ before_script:
   - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.4/seabolt-1.7.4-Linux-ubuntu-16.04.deb
   - sudo dpkg -i seabolt-1.7.4-Linux-ubuntu-16.04.deb
   - "while [ $((curl localhost:7474/ > /dev/null 2>&1); echo $?) -ne 0 ]; do sleep 1; done"
-  - wget -P ../. https://github.com/heartcombo/devise.git
 script:
   - "travis_retry bin/rake default --trace"
 language: ruby
@@ -31,11 +32,6 @@ env:
     - NEO4J_VERSION=enterprise-4.0.0
 matrix:
   include:
-    - jdk:
-      before_script:
-      script: "bundle exec rubocop"
-      env: "RUBOCOP=true"
-
     # Testing older versions of ActiveModel
     - rvm: 2.5.7
       jdk: openjdk8

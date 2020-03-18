@@ -10,10 +10,6 @@ gem "rdoc"
 gem 'activegraph'
 gem "devise"
 
-group :development do
-  gem 'pry'
-end
-
 group :test do
   gem "omniauth-facebook"
   gem "omniauth-openid", "~> 1.0.1"
@@ -21,7 +17,8 @@ group :test do
   gem "mocha", :require => false
   gem 'rails-controller-testing'
   gem 'neo4j-rake_tasks'
-  gem "neo4j-#{RUBY_PLATFORM =~ /java/ ? 'java' : 'ruby'}-driver", '>= 0.3.0'
+  #gem "neo4j-#{RUBY_PLATFORM =~ /java/ ? 'java' : 'ruby'}-driver", '>= 0.3.0'
+  gem 'neo4j-ruby-driver'
   gem "timecop"
   gem 'pry'
   platforms :mri_18 do

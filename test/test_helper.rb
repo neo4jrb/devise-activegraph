@@ -14,6 +14,7 @@ require 'pry'
 I18n.load_path << "#{DEVISE_PATH}/test/support/locale/en.yml"
 
 require 'mocha/setup'
+require 'timecop'
 require 'webrat'
 Webrat.configure do |config|
   config.mode = :rails

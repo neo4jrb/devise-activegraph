@@ -24,7 +24,7 @@ end
 
 
 def create_driver
-  server_url = ENV['NEO4J_URL'] || 'bolt://localhost:7472'
+  server_url = ENV['NEO4J_URL'] || 'bolt://localhost:7687'
   ActiveGraph::Base.driver = TestDriver.new(server_url)
 end
 
@@ -40,6 +40,8 @@ end
 class ActiveSupport::TestCase
   setup do
     create_driver
+    ActiveGraph::Core::Label.drop_constraints
+    ActiveGraph::Core::Label.drop_indexes
     ActiveGraph::Base.label_object(User.mapped_label_names.first).create_constraint(User.id_property_name, type: :unique)
     ActiveGraph::Base.label_object(Admin.mapped_label_names.first).create_constraint(Admin.id_property_name, type: :unique)
     ActiveGraph::Base.label_object(UserOnMainApp.mapped_label_names.first).create_constraint(UserOnMainApp.id_property_name, type: :unique)
@@ -47,4 +49,9 @@ class ActiveSupport::TestCase
     ActiveGraph::Base.label_object(UserWithoutEmail.mapped_label_names.first).create_constraint(UserWithoutEmail.id_property_name, type: :unique)
     ActiveGraph::Base.query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
   end
+
+  # teardown do
+  #   p ">>>>>>>"
+  #   Timecop.return
+  # end
 end
