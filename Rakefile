@@ -8,7 +8,7 @@ rescue LoadError
   load 'neo4j/tasks/neo4j_server.rake'
 end
 
-task :default => [:test, :"neo4j:db:remove"]
+task :default => [:test]
 
 ENV['DEVISE_ORM'] = 'active_graph'
 ENV['DEVISE_PATH'] = File.join(File.dirname(__FILE__), '../devise')
@@ -31,14 +31,4 @@ Rake::TestTask.new(:test) do |test|
   #test.test_files = ['test/generators/neo4j/devise_generator_test.rb']
   #test.verbose = true
   test.warning = false
-end
-
-
-namespace :neo4j do
-  namespace :db do
-    desc 'Remove the neo4j db files'
-    task :remove do
-      system "rm -fr #{File.join(File.dirname(__FILE__), "db", "*")}"
-    end
-  end
 end
