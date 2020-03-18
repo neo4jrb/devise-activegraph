@@ -2,7 +2,7 @@
 dist: xenial
 
 before_script:
-  - mkdir ../devise
+  - sudo mkdir ../devise
   - git clone git@github.com:heartcombo/devise.git ../devise
   - "travis_retry bin/rake neo4j:install[$NEO4J_VERSION] --trace"
   - "bin/rake neo4j:config[development,7474] --trace"
