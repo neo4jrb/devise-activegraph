@@ -23,5 +23,5 @@ Gem::Specification.new do |s|
   s.add_dependency("railties", ">= 4.2")
   s.add_dependency("activegraph")
   s.add_dependency("devise", ">= 3.5.2")
-  s.add_dependency("rake", ">= 10.0.0")
+  s.add_development_dependency("rake", ">= 10.0.0")
 end

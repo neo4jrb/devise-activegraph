@@ -91,6 +91,11 @@ The neo4j web interface is forward to port 7474 on your local machine:
 
 ## Note on testing
 
+Install development dependencies:
+```
+gem install --dev
+```
+
 To run all test, simply type `rake` If you want to run a specific Devise test
 (see the devise github repository) set the DEVISE_TEST_PATH.
 
