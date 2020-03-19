@@ -10,10 +10,6 @@ gem "rdoc"
 gem 'activegraph'
 gem "devise"
 
-group :development do
-  gem 'pry'
-end
-
 group :test do
   gem "omniauth-facebook"
   gem "omniauth-openid", "~> 1.0.1"

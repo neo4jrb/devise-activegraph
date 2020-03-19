@@ -15,8 +15,7 @@ before_script:
   - sudo dpkg -i seabolt-1.7.4-Linux-ubuntu-16.04.deb
   - "while [ $((curl localhost:7474/ > /dev/null 2>&1); echo $?) -ne 0 ]; do sleep 1; done"
 script:
-  - "travis_retry bin/rake default --trace"
-  - "ps -ax | sort"
+  - "bin/rake default --trace"
 language: ruby
 cache: bundler
 jdk: openjdk11
