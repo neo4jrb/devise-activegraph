@@ -16,6 +16,7 @@ before_script:
   - "while [ $((curl localhost:7474/ > /dev/null 2>&1); echo $?) -ne 0 ]; do sleep 1; done"
 script:
   - "travis_retry bin/rake default --trace"
+  - "ps -ax | sort"
 language: ruby
 cache: bundler
 jdk: openjdk11
