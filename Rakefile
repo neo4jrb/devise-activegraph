@@ -8,8 +8,6 @@ rescue LoadError
   load 'neo4j/tasks/neo4j_server.rake'
 end
 
-task :default => [:test]
-
 ENV['DEVISE_ORM'] = 'active_graph'
 ENV['DEVISE_PATH'] = File.join(File.dirname(__FILE__), '../devise')
 desc 'Run tests for devise-neo4j.'
@@ -32,3 +30,5 @@ Rake::TestTask.new(:test) do |test|
   #test.verbose = true
   test.warning = false
 end
+
+task :default => [:test]
