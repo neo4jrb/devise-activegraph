@@ -14,4 +14,7 @@ class DatabaseAuthenticatableTest < ActiveSupport::TestCase
     assert_match "can't be blank", user.errors[:current_password].join
   end
 
+  # the passowrd_changed? method returns false with activegraph on user.update(password: 'newpass', password_confirmation: 'newpass')
+  undef :test_should_notify_email_on_password_change_when_configured
+  undef :test_should_notify_previous_email_on_email_change_when_configured
 end

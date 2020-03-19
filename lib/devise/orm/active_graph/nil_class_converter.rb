@@ -1,5 +1,5 @@
-require 'neo4j'
-class Neo4j::TypeConverters::NilClassConverter
+require 'active_graph'
+class ActiveGraph::TypeConverters::NilClassConverter
   class << self
     def convert?(type)
       type == NilClass || type == :nilclass

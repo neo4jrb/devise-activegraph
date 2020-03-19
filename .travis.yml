@@ -1,19 +1,39 @@
+---
+dist: xenial
+
 before_script:
-  - "bin/rake neo4j:install[community-latest] --trace"
+  - mkdir ../devise
+  - git clone https://github.com/heartcombo/devise.git ../devise
+  - "travis_retry bin/rake neo4j:install[$NEO4J_VERSION] --trace"
   - "bin/rake neo4j:config[development,7474] --trace"
+  - "if [ -f ./db/neo4j/development/conf/neo4j-wrapper.conf ]; then WRAPPER=-wrapper; fi"
   - "echo 'dbms.memory.pagecache.size=600m' >> ./db/neo4j/development/conf/neo4j.conf"
-  - "echo 'dbms.memory.heap.max_size=600' >> ./db/neo4j/development/conf/neo4j-wrapper.conf"
-  - "echo 'dbms.memory.heap.initial_size=600' >> ./db/neo4j/development/conf/neo4j-wrapper.conf"
+  - "echo 'dbms.memory.heap.max_size=600m' >> ./db/neo4j/development/conf/neo4j$WRAPPER.conf"
+  - "echo 'dbms.memory.heap.initial_size=600m' >> ./db/neo4j/development/conf/neo4j$WRAPPER.conf"
   - "bin/rake neo4j:start --trace"
-  - "sleep 20"
+  - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.4/seabolt-1.7.4-Linux-ubuntu-16.04.deb
+  - sudo dpkg -i seabolt-1.7.4-Linux-ubuntu-16.04.deb
+  - "while [ $((curl localhost:7474/ > /dev/null 2>&1); echo $?) -ne 0 ]; do sleep 1; done"
 script:
-  - "travis_retry bin/rake default --trace"
+  - "bin/rake default --trace"
 language: ruby
 cache: bundler
-jdk: oraclejdk8
-sudo: false
+jdk: openjdk11
+rvm:
+  - 2.7.0
+  #- jruby-9.2.8.0
+  - jruby-9.2.11.0
 env:
   global:
-    - JRUBY_OPTS="-J-Xmx1280m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF"
-rvm:
-  - 2.2.3
+    - JRUBY_OPTS="--debug -J-Xmx1280m -Xcompile.invokedynamic=false -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -Xcompile.mode=OFF"
+    - NEO4J_URL="bolt://localhost:7472"
+  matrix:
+    - NEO4J_VERSION=enterprise-3.5.14
+    - NEO4J_VERSION=enterprise-4.0.0
+matrix:
+  include:
+    # Testing older versions of ActiveModel
+    - rvm: 2.5.7
+      jdk: openjdk8
+      env: NEO4J_VERSION=community-3.4.17 ACTIVE_MODEL_VERSION=5.2.3
+

@@ -1,5 +1,5 @@
 module Devise
-  module Neo4j
+  module ActiveGraph
     VERSION = "3.0.0.alpha.1"
   end
 end
