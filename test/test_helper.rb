@@ -22,6 +22,10 @@ end
 
 Mocha::Configuration.allow(:stubbing_method_on_nil)
 
+Minitest.after_run {
+  Timecop.return
+}
+
 # Add support to load paths so we can overwrite broken webrat setup
 $:.unshift "#{DEVISE_PATH}/test/support"
 Dir["#{DEVISE_PATH}/test/support/**/*.rb"].each { |f| require f }
