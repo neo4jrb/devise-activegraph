@@ -1,5 +1,27 @@
 ---
 dist: xenial
+language: ruby
+cache: bundler
+jdk: openjdk11
+
+rvm:
+  - 2.7.0
+  - jruby-9.2.11.0
+
+env:
+  global:
+    - JRUBY_OPTS="--debug -J-Xmx2048M"
+    - NEO4J_URL="bolt://localhost:7472"
+  matrix:
+    - NEO4J_VERSION=enterprise-3.5.14
+    - NEO4J_VERSION=enterprise-4.0.0
+
+matrix:
+  include:
+    # Testing older versions of ActiveModel
+    - rvm: 2.5.7
+      jdk: openjdk8
+      env: NEO4J_VERSION=community-3.4.17 ACTIVE_MODEL_VERSION=5.2.3
 
 before_script:
   - mkdir ../devise
@@ -13,25 +35,7 @@ before_script:
   - "bundle exec rake neo4j:start --trace"
   - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.4/seabolt-1.7.4-Linux-ubuntu-16.04.deb
   - sudo dpkg -i seabolt-1.7.4-Linux-ubuntu-16.04.deb
-  - "curl -f -s --retry 7 --output /dev/null --show-error localhost:7474"
+  - "while [ $((curl localhost:7474 > /dev/null 2>&1); echo $?) -ne 0 ]; do sleep 1; done"
+
 script:
   - "bundle exec rake default --trace"
-language: ruby
-cache: bundler
-jdk: openjdk11
-rvm:
-  - 2.7.0
-  - jruby-9.2.11.0
-env:
-  global:
-    - JRUBY_OPTS="--debug -J-Xmx2048M"
-    - NEO4J_URL="bolt://localhost:7472"
-  matrix:
-    - NEO4J_VERSION=enterprise-3.5.14
-    - NEO4J_VERSION=enterprise-4.0.0
-matrix:
-  include:
-    # Testing older versions of ActiveModel
-    - rvm: 2.5.7
-      jdk: openjdk8
-      env: NEO4J_VERSION=community-3.4.17 ACTIVE_MODEL_VERSION=5.2.3
