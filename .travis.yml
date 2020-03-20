@@ -13,7 +13,7 @@ before_script:
   - "bin/rake neo4j:start --trace"
   - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.4/seabolt-1.7.4-Linux-ubuntu-16.04.deb
   - sudo dpkg -i seabolt-1.7.4-Linux-ubuntu-16.04.deb
-  - "while [ $((curl localhost:7474/ > /dev/null 2>&1); echo $?) -ne 0 ]; do sleep 1; done"
+  - "curl -f -s --retry 7 --output /dev/null --show-error localhost:7474"
 script:
   - "bin/rake default --trace"
 language: ruby
@@ -21,7 +21,6 @@ cache: bundler
 jdk: openjdk11
 rvm:
   - 2.7.0
-  #- jruby-9.2.8.0
   - jruby-9.2.11.0
 env:
   global:
@@ -36,4 +35,3 @@ matrix:
     - rvm: 2.5.7
       jdk: openjdk8
       env: NEO4J_VERSION=community-3.4.17 ACTIVE_MODEL_VERSION=5.2.3
-

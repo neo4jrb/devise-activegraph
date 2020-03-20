@@ -24,7 +24,7 @@ devise-neo4j model:
     rails g devise:install --orm=neo4j
     # Make sure the model file is created ahead of time!
     rails g neo4j:devise MODEL  # (Where MODEL is something like User)
-    
+
 Add the Devise route to your config/routes.rb:
 
     devise_for :users
@@ -42,11 +42,11 @@ You can see a very simple app that demonstrates Neo4j and devise here:
     gem install rails
     rails new myapp -m http://neo4jrb.io/neo4j/rails.rb -O
     cd myapp
-    
+
     # Add the gem to your Gemfile, then run bundle:
     gem 'devise-neo4j'
     bundle
-    
+
     rails generate devise:install --orm=neo4j
 
     # Install the database unless you already have a Neo4j database, or use JRuby Embedded Neo4j db
@@ -54,7 +54,7 @@ You can see a very simple app that demonstrates Neo4j and devise here:
     rake neo4j:start
 
     rails g neo4j:devise User
-    
+
     # Add to your config/routes.rb:
     devise_for :users
     root :to => "secrets#show"
@@ -90,11 +90,6 @@ The neo4j web interface is forward to port 7474 on your local machine:
 [http://localhost:7474](http://localhost:7474).
 
 ## Note on testing
-
-Install development dependencies:
-```
-gem install --dev
-```
 
 To run all test, simply type `rake` If you want to run a specific Devise test
 (see the devise github repository) set the DEVISE_TEST_PATH.
