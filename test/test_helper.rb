@@ -22,6 +22,7 @@ end
 
 Mocha::Configuration.allow(:stubbing_method_on_nil)
 
+require 'timecop'
 at_exit do
   Timecop.return
 end
