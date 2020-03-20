@@ -15,7 +15,7 @@ before_script:
   - sudo dpkg -i seabolt-1.7.4-Linux-ubuntu-16.04.deb
   - "curl -f -s --retry 7 --output /dev/null --show-error localhost:7474"
 script:
-  - "bin/rake default --trace"
+  - "bundle exec rake default --trace"
 language: ruby
 cache: bundler
 jdk: openjdk11
