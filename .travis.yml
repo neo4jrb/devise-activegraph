@@ -26,6 +26,7 @@ matrix:
 before_script:
   - mkdir ../devise
   - git clone https://github.com/heartcombo/devise.git ../devise
+  - "echo 'Minitest.after_run { Timecop.return }' >> ../devise/test/test_helper.rb"
   - "travis_retry bundle exec rake neo4j:install[$NEO4J_VERSION] --trace"
   - "bundle exec rake neo4j:config[development,7474] --trace"
   - "if [ -f ./db/neo4j/development/conf/neo4j-wrapper.conf ]; then WRAPPER=-wrapper; fi"
