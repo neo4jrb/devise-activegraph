@@ -1,4 +1,4 @@
-# Devise-Neo4j [![Build Status](https://secure.travis-ci.org/neo4jrb/devise-neo4j.png?branch=master)](http://travis-ci.org/neo4jrb/devise-neo4j)
+# Devise-ActiveGraph [![Build Status](https://secure.travis-ci.org/neo4jrb/devise-neo4j.png?branch=master)](http://travis-ci.org/neo4jrb/devise-neo4j)
 
 A gem for Neo4j integration with the Devise authentication framework.
 
@@ -9,7 +9,7 @@ https://github.com/plataformatec/devise
 
 ### Installation
 
-Add the neo4j and devise-neo4j gems to your Gemfile:
+Add the neo4j and devise-activegraph gems to your Gemfile:
 
     gem "neo4j"
     gem "devise-neo4j"
@@ -21,9 +21,9 @@ Run the bundle install command:
 Then run the Devise install generator and optionally update or create a
 devise-neo4j model:
 
-    rails g devise:install --orm=neo4j
+    rails g devise:install --orm=active_graph
     # Make sure the model file is created ahead of time!
-    rails g neo4j:devise MODEL  # (Where MODEL is something like User)
+    rails g neo4j:active_graph MODEL  # (Where MODEL is something like User)
     
 Add the Devise route to your config/routes.rb:
 
@@ -44,10 +44,10 @@ You can see a very simple app that demonstrates Neo4j and devise here:
     cd myapp
     
     # Add the gem to your Gemfile, then run bundle:
-    gem 'devise-neo4j'
+    gem 'devise-activegraph'
     bundle
     
-    rails generate devise:install --orm=neo4j
+    rails generate devise:install --orm=active_graph
 
     # Install the database unless you already have a Neo4j database, or use JRuby Embedded Neo4j db
     rake neo4j:install[community-2.2.2] # check which one is the latest
@@ -91,7 +91,7 @@ The neo4j web interface is forward to port 7474 on your local machine:
 
 ## Note on testing
 
-To run all test, simply type `rake` If you want to run a specific Devise test
+To run all test, checkout devise repository in same directory as devise-activegraph and simply type `rake` If you want to run a specific Devise test
 (see the devise github repository) set the DEVISE_TEST_PATH.
 
 Example: ``` rake DEVISE_TEST_PATH=integration/confirmable_test.rb ```
