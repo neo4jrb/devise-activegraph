@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "devise/active_graph/version"
 
 Gem::Specification.new do |s|
-  s.name        = "devise-activegraph"
+  s.name        = "devise-active_graph"
   s.version     = Devise::ActiveGraph::VERSION
 
   s.authors     = ["Ben Jackson", "Bobby Calderwood"]
@@ -23,5 +23,5 @@ Gem::Specification.new do |s|
   s.add_dependency("railties", ">= 4.2")
   s.add_dependency("activegraph", ">= 10.0.0.pre.beta.2")
   s.add_dependency("devise", ">= 3.5.2")
-
+  s.add_dependency("zeitwerk")
 end

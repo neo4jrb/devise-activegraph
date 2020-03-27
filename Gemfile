@@ -17,10 +17,10 @@ group :test do
   gem "mocha", :require => false
   gem 'rails-controller-testing'
   gem 'neo4j-rake_tasks'
-  #gem "neo4j-#{RUBY_PLATFORM =~ /java/ ? 'java' : 'ruby'}-driver", '>= 0.3.0'
   gem 'neo4j-ruby-driver'
   gem "timecop"
   gem 'pry'
+  gem 'rake'
   platforms :mri_18 do
     gem "ruby-debug", ">= 0.10.3"
   end

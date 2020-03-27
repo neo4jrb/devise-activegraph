@@ -9,10 +9,10 @@ https://github.com/plataformatec/devise
 
 ### Installation
 
-Add the neo4j and devise-activegraph gems to your Gemfile:
+Add the neo4j and devise-active_graph gems to your Gemfile:
 
     gem "neo4j"
-    gem "devise-neo4j"
+    gem "devise-active_graph"
 
 Run the bundle install command:
 
