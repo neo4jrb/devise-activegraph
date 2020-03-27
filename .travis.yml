@@ -4,18 +4,18 @@ dist: xenial
 before_script:
   - mkdir ../devise
   - git clone https://github.com/heartcombo/devise.git ../devise
-  - "travis_retry bundle exec neo4j:install[$NEO4J_VERSION] --trace"
-  - "bundle exec neo4j:config[development,7474] --trace"
+  - "travis_retry bundle exec rake neo4j:install[$NEO4J_VERSION] --trace"
+  - "bundle exec rake neo4j:config[development,7474] --trace"
   - "if [ -f ./db/neo4j/development/conf/neo4j-wrapper.conf ]; then WRAPPER=-wrapper; fi"
   - "echo 'dbms.memory.pagecache.size=600m' >> ./db/neo4j/development/conf/neo4j.conf"
   - "echo 'dbms.memory.heap.max_size=600m' >> ./db/neo4j/development/conf/neo4j$WRAPPER.conf"
   - "echo 'dbms.memory.heap.initial_size=600m' >> ./db/neo4j/development/conf/neo4j$WRAPPER.conf"
-  - "bundle exec neo4j:start --trace"
+  - "bundle exec rake neo4j:start --trace"
   - wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.4/seabolt-1.7.4-Linux-ubuntu-16.04.deb
   - sudo dpkg -i seabolt-1.7.4-Linux-ubuntu-16.04.deb
   - "while [ $((curl localhost:7474/ > /dev/null 2>&1); echo $?) -ne 0 ]; do sleep 1; done"
 script:
-  - "travis_retry bundle exec default --trace"
+  - "travis_retry bundle exec rake default --trace"
 language: ruby
 cache: bundler
 jdk: openjdk11
