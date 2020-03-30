@@ -2,7 +2,7 @@ require 'devise'
 require 'active_graph'
 require "zeitwerk"
 loader = Zeitwerk::Loader.for_gem
-loader.ignore(File.expand_path('devise-active_graph.rb', __dir__))
+loader.ignore(File.expand_path('devise-activegraph.rb', __dir__))
 loader.ignore(File.expand_path('./devise/active_graph/version.rb', __dir__))
 loader.ignore(File.expand_path('./generators', __dir__))
 loader.setup

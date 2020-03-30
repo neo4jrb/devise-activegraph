@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "devise/active_graph/version"
 
 Gem::Specification.new do |s|
-  s.name        = "devise-active_graph"
+  s.name        = "devise-activegraph"
   s.version     = Devise::ActiveGraph::VERSION
 
   s.authors     = ["Ben Jackson", "Bobby Calderwood"]
