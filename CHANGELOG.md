@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 This file should follow the standards specified on [http://keepachangelog.com/]
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0.alpha.1]
+
+###
+
+- Moving from devise-neo4j to devise-activegraph.
+
 ## [2.1.1] - 12-23-2016
 
 ### Fixed

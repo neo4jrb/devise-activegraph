@@ -49,9 +49,4 @@ class ActiveSupport::TestCase
     ActiveGraph::Base.label_object(UserWithoutEmail.mapped_label_names.first).create_constraint(UserWithoutEmail.id_property_name, type: :unique)
     ActiveGraph::Base.query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
   end
-
-  # teardown do
-  #   p ">>>>>>>"
-  #   Timecop.return
-  # end
 end

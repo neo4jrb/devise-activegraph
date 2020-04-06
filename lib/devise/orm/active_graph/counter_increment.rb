@@ -1,9 +1,15 @@
-module CounterIncrement
-	def increment_counter(property, id)
-		obj = find(id)
-		counter = obj.send(property) || 0
-		obj.update_attribute(property, counter + 1)
-	end
+module Devise
+  module Orm
+    module ActiveGraph
+      module CounterIncrement
+        def increment_counter(property, id)
+          query_proxy = where(id: id)
+          node_var = query_proxy.identity
+          query_proxy.query
+                     .set_props("#{node_var}.failed_attempts = #{node_var}.failed_attempts + 1")
+                     .exec
+        end
+      end
+    end
+  end
 end
-
-ActiveGraph::Node::ClassMethods.send :include, CounterIncrement

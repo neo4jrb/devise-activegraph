@@ -1,6 +1,3 @@
-require 'devise'
-require 'devise/orm/active_graph/nil_class_converter'
-
 module Devise
   module Orm
     module ActiveGraph
