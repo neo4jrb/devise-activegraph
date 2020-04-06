@@ -1,15 +1,16 @@
-require 'shared_user_without_omniauth'
+require 'shared_user'
 
-class UserOnEngine
-  include Neo4j::ActiveNode
-  include SharedUserWithoutOmniauth
+class User
+  include ActiveGraph::Node
+  include SharedUser
 
-  property :username,           type: String
-  property :facebook_token,     type: String
+  property :username,       type: String
+  property :facebook_token, type: String
+#  property :id
 
   ## Database authenticatable
   property :email,              type: String, default: ''
-  property :encrypted_password, type: String, default: ''
+  property :encrypted_password, type: String
 
   ## Recoverable
   property :reset_password_token,   type: String
@@ -29,7 +30,7 @@ class UserOnEngine
   property :confirmation_token,   type: String
   property :confirmed_at,         type: DateTime
   property :confirmation_sent_at, type: DateTime
-  #  property :unconfirmed_email,   type: String  # Only if using reconfirmable
+#  property :unconfirmed_email,   type: String  # Only if using reconfirmable
 
   ## Lockable
   property :failed_attempts, type: Integer, default: 0
@@ -39,7 +40,18 @@ class UserOnEngine
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
 
-  def raw_confirmation_token
-    @raw_confirmation_token
+  def to_xml(*args)
+    args = args.try(:first) || {}
+    except = ['confirmation_token']
+    except << args[:except].to_s if args[:except]
+    except = [args[:force_except].to_s] if args[:force_except]
+    attributes.except(*except).merge(password: nil).to_xml(args.merge({ root: 'user' }))
+  end
+
+  def self.validations_performed
+    false
   end
 end
+
+UserAdapter  = User.to_adapter unless User.is_a?(OrmAdapter::Base)
+

@@ -1,7 +1,7 @@
 require 'shared_user_without_omniauth'
 
-class UserOnMainApp
-  include Neo4j::ActiveNode
+class UserOnEngine
+  include ActiveGraph::Node
   include SharedUserWithoutOmniauth
 
   property :username,           type: String
@@ -42,5 +42,4 @@ class UserOnMainApp
   def raw_confirmation_token
     @raw_confirmation_token
   end
-
 end

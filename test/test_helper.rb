@@ -9,10 +9,12 @@ puts "\n==> Devise.orm = #{DEVISE_ORM.inspect}"
 require "rails_app/config/environment"
 require "rails/test_help"
 require "orm/#{DEVISE_ORM}"
+require 'pry'
 
 I18n.load_path << "#{DEVISE_PATH}/test/support/locale/en.yml"
 
 require 'mocha/setup'
+require 'timecop'
 require 'webrat'
 Webrat.configure do |config|
   config.mode = :rails
@@ -35,4 +37,6 @@ require 'generators/devise/install_generator'
 require 'generators/devise/controllers_generator'
 require 'generators/devise/views_generator'
 require 'test_models'
-
+require 'overrides/integration_test'
+require 'rails-controller-testing'
+Rails::Controller::Testing.install
