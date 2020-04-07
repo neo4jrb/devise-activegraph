@@ -1,31 +1,9 @@
 require 'fileutils'
-require 'active_graph/core/driver'
-require 'active_graph/core'
-# mostly copied from neo4j/spec/spec_helper
-class TestDriver < ActiveGraph::Core::Driver
-  cattr_reader :cache, default: {}
-
-  at_exit do
-    close_all
-  end
-
-  class << self
-    def new_instance(url, auth_token, options = {})
-      cache[url] ||= super(url, auth_token, options.merge(encryption: false))
-    end
-
-    def close_all
-      cache.values.each(&:close)
-    end
-  end
-
-  def close; end
-end
-
 
 def create_driver
-  server_url = ENV['NEO4J_URL'] || 'bolt://localhost:7687'
-  ActiveGraph::Base.driver = TestDriver.new(server_url)
+server_url = ENV['NEO4J_URL'] || 'bolt://localhost:7687'
+  ActiveGraph::Base.driver =
+    Neo4j::Driver::GraphDatabase.driver(server_url, Neo4j::Driver::AuthTokens.none, encryption: false)
 end
 
 
