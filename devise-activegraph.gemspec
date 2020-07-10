@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency("orm_adapter", "~> 0.5.0")
   s.add_dependency("bcrypt", ">= 3.0")
   s.add_dependency("railties", ">= 4.2")
-  s.add_dependency("activegraph", ">= 10.0.0.pre.beta.2")
+  s.add_dependency("activegraph", ">= 10.0.0")
   s.add_dependency("devise", ">= 3.5.2")
   s.add_dependency("zeitwerk")
 end

@@ -13,13 +13,13 @@ class ActiveGraph::Generators::ModelGeneratorTest < Rails::Generators::TestCase
     yield $2.strip if block_given?
   end
 
-  # test "invoke with model name" do
-  #   content = run_generator %w(Player)
+  test "invoke with model name" do
+    content = run_generator %w(Player)
 
-  #   assert_file "app/models/player.rb" do |player|
-  #     assert_class "Player", player do |klass|
-  #       assert_match /ActiveGraph::Node/, klass
-  #     end
-  #   end
-  # end
+    assert_file "app/models/player.rb" do |player|
+      assert_class "Player", player do |klass|
+        assert_match /ActiveGraph::Node/, klass
+      end
+    end
+  end
 end
